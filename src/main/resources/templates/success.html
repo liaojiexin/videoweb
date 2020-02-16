@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">  <!--导入thymeleaf的名称空间，不导入也可以不过就没有语法提示 -->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>成功</h1>
+    <div th:text="${hello}">这里可以写任何信息或空，都会被后端“hello”键的内容覆盖</div>  <!-- HelloController中map键hello的值传给div-->
+</body>
+</html>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liaojiexin.videoweb.mapper.CommentsMapper" >
+  <resultMap id="BaseResultMap" type="com.liaojiexin.videoweb.entity.Comments" >
+    <id column="commenttime" property="commenttime" jdbcType="TIMESTAMP" />
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <id column="vid" property="vid" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <!-- 多对一的关系  多条评论对应一个评论人-->
+    <!-- column：指的是数据库队列名，property: 指的是属性名称, javaType：指的是属性的类型 -->
+    <association property="user" javaType="com.liaojiexin.videoweb.entity.User">
+      <id column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="username" property="username" jdbcType="VARCHAR" />
+      <result column="password" property="password" jdbcType="VARCHAR" />
+      <result column="email" property="email" jdbcType="VARCHAR" />
+      <result column="birthday" property="birthday" jdbcType="DATE" />
+    </association>
+    <!-- 多对一的关系 多条评论对应一个视频-->
+    <!-- column：指的是数据库队列名，property: 指的是属性名称, javaType：指的是属性的类型 -->
+    <association property="video" javaType="com.liaojiexin.videoweb.entity.Video">
+      <id column="vid" property="vid" jdbcType="INTEGER" />
+      <result column="vname" property="vname" jdbcType="VARCHAR" />
+      <result column="vtag" property="vtag" jdbcType="CHAR" />
+      <result column="date" property="date" jdbcType="TIMESTAMP" />
+      <result column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="imageurl" property="imageurl" jdbcType="VARCHAR" />
+      <result column="state" property="state" jdbcType="TINYINT" />
+      <result column="special" property="special" jdbcType="VARCHAR" />
+      <result column="countcomments" property="countcomments" jdbcType="INTEGER" />
+      <result column="countlikes" property="countlikes" jdbcType="INTEGER" />
+      <result column="countlooks" property="countlooks" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    commenttime, uid, vid, comment
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.liaojiexin.videoweb.entity.CommentsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from comments
+    where commenttime = #{commenttime,jdbcType=TIMESTAMP}
+      and uid = #{uid,jdbcType=INTEGER}
+      and vid = #{vid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.liaojiexin.videoweb.entity.CommentsKey" >
+    delete from comments
+    where commenttime = #{commenttime,jdbcType=TIMESTAMP}
+      and uid = #{uid,jdbcType=INTEGER}
+      and vid = #{vid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.liaojiexin.videoweb.entity.Comments" >
+    insert into comments
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commenttime != null" >
+        commenttime,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="vid != null" >
+        vid,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commenttime != null" >
+        #{commenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liaojiexin.videoweb.entity.Comments" >
+    update comments
+    <set >
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commenttime = #{commenttime,jdbcType=TIMESTAMP}
+      and uid = #{uid,jdbcType=INTEGER}
+      and vid = #{vid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liaojiexin.videoweb.entity.Comments" >
+    update comments
+    set comment = #{comment,jdbcType=VARCHAR}
+    where commenttime = #{commenttime,jdbcType=TIMESTAMP}
+      and uid = #{uid,jdbcType=INTEGER}
+      and vid = #{vid,jdbcType=INTEGER}
+  </update>
+  <!-- 查询视频全部评论 -->
+  <select id="selectcomments" resultMap="BaseResultMap">
+    select comments.*,username
+    from comments,user
+    where comments.uid=user.uid and comments.vid=#{vid,jdbcType=INTEGER}
+    order by comments.commenttime DESC
+  </select>
+  <!-- 插入评论 -->
+  <insert id="insertcomments" parameterType="com.liaojiexin.videoweb.entity.Comments" >
+    insert into comments (commenttime, uid, vid,
+      comment)
+    values (#{commenttime,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER},
+      #{comment,jdbcType=VARCHAR})
+  </insert>
+  <!-- 个人中心管理 删除视频的评论记录 -->
+  <delete id="deletePersonalVideo">
+    delete from comments where vid=#{vid}
+  </delete>
+</mapper>

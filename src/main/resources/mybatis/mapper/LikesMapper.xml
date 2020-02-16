@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liaojiexin.videoweb.mapper.LikesMapper" >
+  <resultMap id="BaseResultMap" type="com.liaojiexin.videoweb.entity.LikesKey" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <id column="vid" property="vid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insertSelective" parameterType="com.liaojiexin.videoweb.entity.LikesKey" >
+    insert into likes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="vid != null" >
+        vid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="vid != null" >
+        #{vid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+<!-- 查询是否已经投票 -->
+  <select id="selectlike" resultType="com.liaojiexin.videoweb.entity.LikesKey" parameterType="com.liaojiexin.videoweb.entity.LikesKey">
+    select * from likes
+    where uid = #{uid,jdbcType=INTEGER} and vid = #{vid,jdbcType=INTEGER}
+  </select>
+<!-- 投票 -->
+  <insert id="insertlike" parameterType="com.liaojiexin.videoweb.entity.LikesKey" >
+    insert into likes (uid, vid)
+    values (#{uid,jdbcType=INTEGER}, #{vid,jdbcType=INTEGER})
+  </insert>
+<!-- 取消投票 -->
+  <delete id="deletelike" parameterType="com.liaojiexin.videoweb.entity.LikesKey" >
+    delete from likes
+    where uid = #{uid,jdbcType=INTEGER}
+      and vid = #{vid,jdbcType=INTEGER}
+  </delete>
+<!-- 个人中心管理 删除视频的投票记录 -->
+  <delete id="deletePersonalVideo">
+    delete from likes where vid=#{vid}
+  </delete>
+</mapper>

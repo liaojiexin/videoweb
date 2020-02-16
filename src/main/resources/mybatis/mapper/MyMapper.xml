@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liaojiexin.videoweb.mapper.MyMapperConfiguration">  <!-- 绑定接口 -->
+<!--    public User getUserById(Integer uid);   //同个id查询-->
+<!--    public void insertUser(User user);      //插入-->
+    <select id="getUserById" resultType="com.liaojiexin.videoweb.entity.User">
+        SELECT * FROM user WHERE uid=#{uid}
+    </select>
+
+    <insert id="insertUser">
+        INSERT INTO user(username,password,email,birthday) VALUES (#{username},#{password},#{email},#{birthday})
+    </insert>
+</mapper>
+
+
+<!--配置完后去application.yml中配置-->

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>公共模块</title>
+	
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+	
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	
+	<!-- Owl Carousel Assets -->
+    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+	
+	<!-- jQuery -->
+	<script src="/js/jquery-2.1.1.js"></script>
+	
+	<!-- Core JavaScript Files -->  	 
+    <script src="/js/bootstrap.min.js"></script>
+
+	<script src="/js/commons.js"></script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<header th:fragment="commonHeader">
+	<!--Navigation-->
+    <nav id="menu" class="navbar">
+		<div class="container">
+			<div class="navbar-header"><span id="heading" class="visible-xs">Categories</span>
+			  <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+			</div>
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<div style="float: left;width:12%;margin-right: 2%;">
+					<img src="/images/logo.PNG" style="padding-left:30%;"/>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a th:href="@{/}"><i class="fa fa-home"></i> 首页</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-play-circle-o"></i> 专题</a>
+						<div class="dropdown-menu">
+							<div class="dropdown-inner">
+								<ul class="list-unstyled">
+									<li><a th:href="@{/specialSelect/第四届NEW ERA青年电影季}">第四届NEW ERA青年电影季</a></li>
+									<li><a th:href="@{/specialSelect/第91届奥斯卡入围动画短片大赏}">第91届奥斯卡入围动画短片大赏</a></li>
+									<li><a th:href="@{/specialSelect/2019戛纳广告节必看广告合集}">2019戛纳广告节必看广告合集</a></li>
+									<li><a th:href="@{/specialSelect/历届奥斯卡优秀短片合集}">历届奥斯卡优秀短片合集</a></li>
+									<li><a th:href="@{/specialSelect/2019年V视频年度精选短片回顾}">2019年V视频年度精选短片回顾</a></li>
+								</ul>
+							</div> 
+						</div>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> 分类</a>
+						<div class="dropdown-menu" style="margin-left: -203.625px;">
+							<div class="dropdown-inner">
+								<ul class="list-unstyled">
+									<li><a th:href="@{/labalSelect/动漫}">动漫</a></li>
+									<li><a th:href="@{/labalSelect/影视}">影视</a></li>
+									<li><a th:href="@{/labalSelect/音乐}">音乐</a></li>
+									<li><a th:href="@{/labalSelect/科技}">科技</a></li>
+								</ul>
+								<ul class="list-unstyled">
+									<li><a th:href="@{/labalSelect/教育}">教育</a></li>
+									<li><a th:href="@{/labalSelect/广告}">广告</a></li>
+									<li><a th:href="@{/labalSelect/生活}">生活</a></li>
+									<li><a th:href="@{/labalSelect/游戏}">游戏</a></li>
+								</ul>
+								<ul class="list-unstyled">
+									<li><a th:href="@{/labalSelect/娱乐}">娱乐</a></li>
+									<li><a th:href="@{/labalSelect/搞笑}">搞笑</a></li>
+									<li><a th:href="@{/labalSelect/运动}">运动</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 账户</a>
+						<div class="dropdown-menu">
+							<div class="dropdown-inner">
+								<ul class="list-unstyled">
+									<li th:if="${session.loginUser} == null"><a th:href="@{/login}">登录</a></li>
+									<li th:if="${session.loginUser} == null"><a th:href="@{/register}">注册</a></li>
+									<li th:if="${session.loginUser} != null"><a th:href="@{/user/relogin}">退出登录</a></li>
+									<li><a th:href="@{/personal}">个人中心</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+					<li><a th:href="@{/contact}"><i class="fa fa-envelope"></i> 联系</a></li>
+				</ul>
+				<div style="float: right;margin-right: 5%;">
+					<form th:action="@{/checkSelect}" class="form-inline">
+							<input class="form-control required" type="" name="vname" id="search-form" placeholder="请输入要搜索的视频名称" required/>
+							<button class="btn" type="submit" style="color: black"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="header-slide">
+		<div id="owl-demo" class="owl-carousel rollvideo">
+			<div class="item" id="roll0">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll1">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll2">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll3">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll4">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll5">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll6">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll7">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll8">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll9">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+			<div class="item" id="roll10">
+				<div class="zoom-container">
+					<div class="zoom-caption">
+						<span>视频标签</span>
+						<a href="single.html">
+							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+						</a>
+						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
+					</div>
+					<img style="height: 143px;width: 256px" src="" />
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- Header -->
+
+	<footer th:fragment="commonFooter">
+		<div class="top-footer">
+			<ul class="footer-social list-inline">
+				<li><i class="fa fa-vimeo-square" style="color: black;"></i> <span style="color: black;">联系方式&nbsp;&nbsp;
+					<i class="fa fa-qq" aria-hidden="true"></i>:XXXXXXXX&nbsp;
+					<i class="fa fa-weixin" aria-hidden="true"></i>:XXXXXXXX&nbsp;
+					<i class="fa fa-weibo" aria-hidden="true"></i>:XXXXXXXXX</span></li>
+			</ul>  
+		</div>
+		<div class="bottom-footer">
+			<div class="container">
+				<div class="row" style="padding-left: 35%;text-align: center;">
+					<div class="col-md-6 col-sm-6 copyright">
+						<span>Copyright &copy; 2019.Company name All rights reserved.video</span>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</footer>
+	<!-- Footer -->
+	
+	<!-- JS -->
+	<script src="/owl-carousel/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        items : 5,
+        itemsDesktop : [1199,4],
+        itemsDesktopSmall : [979,4]
+      });
+    });
+    </script>
+	
+</body>
+</html>

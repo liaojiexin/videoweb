@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+    <title>浏览页</title>
+	
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+	
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+	
+	<!-- Owl Carousel Assets -->
+    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+	
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+	
+	<!-- jQuery and Modernizr-->
+	<script src="/js/jquery-2.1.1.js"></script>
+	
+	<!-- Core JavaScript Files -->  	 
+    <script src="/js/bootstrap.min.js"></script>
+
+	<script src="/js/archive.js"></script>
+	<script src="/js/commons.js"></script>
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+	<header th:replace="commons :: commonHeader"></header>
+
+	<!-- /////////////////////////////////////////Content -->
+	<div id="page-content" class="archive-page">
+		<div class="container">
+			<div class="row">
+				<div id="main-content" class="col-md-6" style="border-bottom:0px;border-top: 0px;padding-bottom: 0px" th:each="page:${pages.list}">
+					<article style="height: 257px">
+						<a th:href="@{/single/}+${page.vid}"><h4 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">[[${page.vname}]]</h4></a>
+						<div class="info">
+							<h5>上传人：<a>[[${page.user.username}]]</a></h5>
+                            <!--    ↓↓↓  格式化时间日期    -->
+							<span><i class="fa fa-calendar"></i>[[${#dates.format(page.date,"yyyy-MM-dd HH:mm:ss")}]]</span>
+							<span><i class="fa fa-comment"></i> [[${page.countcomments}]] 评论</span>
+							<span><i class="fa fa-heart"></i>[[${page.countlikes}]]</span>
+							<span><i class="fa fa-eye"></i>[[${page.countlooks}]]</span>
+							<ul class="list-inline"></ul>
+						</div>
+						<div class="wrap-vid">
+							<div class="zoom-container">
+								<div class="zoom-caption">
+									<span>[[${page.vtag}]]</span>
+									<a th:href="@{/single/}+${page.vid}">
+										<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
+									</a>
+									<p style="font-size: 17px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;" >[[${page.vname}]]</p>
+								</div>
+								<img style="height: 156px;width:250px" th:src="${page.imageurl}" />
+							</div>
+							<!-- p标签超出省略 http://www.bubuko.com/infodetail-2738912.html  -->
+							<p style="font-size:18px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 6;text-overflow:ellipsis;overflow: hidden;text-indent:2em" th:text="${page.introduce}"></p>
+						</div>
+					</article>
+					<br><div class="line" style="margin: 0"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div id="main-content2" class="col-md-12">
+                    <span>相关记录视频[[${pages.total}]]条，共[[${pages.pages}]]页。</span>
+					<center>
+					<ul class="pagination">
+						<li><a id="firstpage" th:href="${#httpServletRequest.getRequestURL()} +'?pageNum=1&vname='+${vname} ">首页</a></li>
+					</ul>
+					<ul class="pagination">
+						<li>
+							<a th:if="${pages.pageNum} > '1'" id="previouspage" th:href="${#httpServletRequest.getRequestURL()}+'?pageNum='+${pages.prePage}+'&vname='+${vname} " aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+					</ul>
+                    <!--   当前页数 ，方便js调用 display:none;隐藏        -->
+                    <span style="display:none;" id="pagenums">[[${pages.pageNum}]]</span>
+					<ul class="pagination" th:each="pagenum:${pagenums}">
+                    <!--	${#httpServletRequest.getRequestURL()}表示当前url，href中也可以不写，如下直接加参数		 -->
+						<li><a th:class="'pagenum'+${pagenum}" th:href="'?pageNum='+${pagenum}+'&vname='+${vname}">[[${pagenum}]]</a></li>
+					</ul>
+					<ul class="pagination">
+						<li>
+							<a th:if="${pages.pageNum} < ${pages.pages}" id="nextpage" th:href="${#httpServletRequest.getRequestURL()}+'?pageNum='+${pages.nextPage}+'&vname='+${vname}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+					<ul class="pagination">
+						<li><a id="endpage" th:href="${#httpServletRequest.getRequestURL()}+'?pageNum='+${pages.pages}+'&vname='+${vname}">末页</a></li>
+					</ul>
+					</center>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="commons :: commonFooter"></footer>
+
+	<!-- JS -->
+	<script src="/owl-carousel/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        items : 5,
+        itemsDesktop : [1199,4],
+        itemsDesktopSmall : [979,4]
+      });
+    });
+    </script>
+	
+</body>
+</html>

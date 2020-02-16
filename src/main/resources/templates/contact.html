@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>联系</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+	<!-- Owl Carousel Assets -->
+    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+
+	<!-- jQuery and Modernizr-->
+	<script src="/js/jquery-2.1.1.js"></script>
+
+	<!-- Core JavaScript Files -->
+    <script src="/js/bootstrap.min.js"></script>
+	<script src="/js/commons.js"></script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header th:replace="commons :: commonHeader"></header>
+	<!-- /////////////////////////////////////////Content -->
+	<div id="page-content" class="contact-page">
+		<div class="container" id="input">
+			<div class="row">
+				<div id="main-content" class="col-md-8" style="margin-left: 15%;">
+					<div class="box">
+						<center><div class="art-header">
+							<h1 class="center">联系</h1>
+						</div></center>
+						<div class="art-content">
+							<div id="contact_form">
+								<form name="form1" id="ff" method="post" th:action="@{/contact/message}" onsubmit="return checkForm()">
+									<label>
+									<span>输入你的名字:</span>
+									<input class="form-control" type="text"  name="name" id="name" placeholder="写下你的名字" required>
+									</label>
+									<label>
+									<span>输入你的邮箱:</span>
+									<input class="form-control" type="email"  name="email" id="email" placeholder="写下你的邮箱，方便我们联系你" required>
+									</label>
+									<label>
+									<span>你的留言:</span>
+									<textarea style="resize: none;" name="message" id="message"class="form-control" placeholder="写下你的建议或遇到的问题(限500个字)" maxlength="500"></textarea>
+									</label>
+									<center><input class="sendButton" type="submit" name="Submit" value="提交"></center>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<footer th:replace="commons :: commonFooter"></footer>
+
+<script>
+	function checkForm(){
+		return  window.confirm("确认提交？");
+	}
+</script>
+
+	<!-- JS -->
+	<script src="/owl-carousel/owl.carousel.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#owl-demo").owlCarousel({
+        autoPlay: 3000,
+        items : 5,
+        itemsDesktop : [1199,4],
+        itemsDesktopSmall : [979,4]
+      });
+
+    });
+    </script>
+	
+ </body>
+</html>

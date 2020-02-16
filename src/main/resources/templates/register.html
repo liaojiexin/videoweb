@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+		<title>注册</title>
+		
+		 <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+
+        <!-- Owl Carousel Assets -->
+        <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+        <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+    
+    	<!-- jQuery -->
+	<script src="/js/jquery-2.1.1.js"></script>
+	
+	<!-- Core JavaScript Files -->  	 
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="/js/register.js"></script>
+        <script src="/js/commons.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	        <script src="/js/html5shiv.js"></script>
+	        <script src="/js/respond.min.js"></script>
+	    <![endif]-->
+    
+		<style>
+            .register {
+				background: url("/images/login1.jpg");
+				animation-name: myfirst;
+				animation-duration: 12s;
+				/*变换时间*/
+				animation-delay: 2s;
+				/*动画开始时间*/
+				animation-iteration-count: infinite;
+				/*下一周期循环播放*/
+				animation-play-state: running;
+				/*动画开始运行*/
+			}			
+			@keyframes myfirst {
+				0% {
+					background: url("/images/login1.jpg");
+				}
+				34% {
+					background: url("/images/login2.jpg");
+				}
+				67% {
+					background: url("/images/login3.jpg");
+				}
+				100% {
+					background: url("/images/login1.jpg");
+				}
+			}
+            .register .form {
+				background: rgba(255, 255, 255, 0.5);
+				width: 500px;
+				margin: 150px auto;
+			}
+			/*阴影*/
+            .register .fa {
+				display: inline-block;
+				top: 30px;
+				left: 6px;
+				position: relative;
+				color: #ccc;
+			}
+            .register input[type="text"],
+            .register input[type="password"],
+            .register input[type="email"]
+            {
+				padding-left: 26px;
+			}			
+			.register .checkbox {
+				padding-left: 21px;
+			}
+		</style>
+	</head>
+	<body>
+        <header th:replace="commons :: commonHeader"></header>
+        <div class="container register">
+            <form id="register">
+                <div class="form row">
+                    <div class="form-horizontal col-md-offset-3" id="login_form">
+                        <h3 class="form-title">注册</h3>
+                        <!-- th:if判断成功才生成p标签 -->
+                        <p style="color: red;margin: 0" id="msgregister"></p>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <i class="fa fa-user fa-lg"></i>
+                                <!--          onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"   正则表达式，限制输入只能为数字字母和下划线   -->
+                                <input class="form-control required"
+                                       type="text" placeholder="用户名(长度8-16，数字/字母/下划线)" id="username" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"
+                                       name="username" autofocus="autofocus" maxlength="20" required/>
+                            </div>
+                            <div class="form-group">
+                                    <i class="fa fa-lock fa-lg"></i>
+                                    <input class="form-control required"
+                                           type="password" placeholder="密码(长度8-16，数字/字母/下划线)" id="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"
+                                           name="password" maxlength="20" required/>
+                            </div>
+                            <div class="form-group">
+                                    <i class="fa fa-lock fa-lg"></i>
+                                    <input class="form-control required"
+                                           type="password" placeholder="确认密码（和上面相同的密码）" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"
+                                           id="repassword" name="repassword" maxlength="20" required/>
+                            </div>
+                            <div class="form-group">
+                                    <i class="fa fa-envelope"></i>
+                                    <input class="form-control required" type="email" placeholder="设置邮箱" id="email" name="email" maxlength="50" required/>
+                            </div>
+                            <div class="form-group col-md-offset-9">
+                                <button type="submit" class="btn btn-success pull-right" name="submit">注册</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer th:replace="commons :: commonFooter"></footer>
+
+        <!-- JS -->
+        <script src="/owl-carousel/owl.carousel.js"></script>
+        <script>
+            $(document).ready(function() {
+                $("#owl-demo").owlCarousel({
+                    autoPlay: 3000,
+                    items : 5,
+                    itemsDesktop : [1199,4],
+                    itemsDesktopSmall : [979,4]
+                });
+
+            });
+        </script>
+	</body>
+</html>

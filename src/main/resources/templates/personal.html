@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+		<title>个人中心</title>
+
+		 <!-- Bootstrap Core CSS -->
+	    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+
+        <!-- select2 -->
+<!--        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />-->
+        <link href="/css/select2.min.css" rel="stylesheet" />
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/personal.css">
+
+        <!-- Owl Carousel Assets -->
+        <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+        <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+
+        <!-- jQuery -->
+        <script src="/js/jquery-2.1.1.js"></script>
+        <!-- select2 -->
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>-->
+        <script src="/js/select2.min.js"></script>
+        <script src="/js/select2-zh-CN.js"></script>
+
+        <!-- Core JavaScript Files -->
+        <script src="/js/bootstrap.min.js"></script>
+
+        <script src="/js/personal.js"></script>
+        <script src="/js/commons.js"></script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+        <![endif]-->
+	</head>
+
+    <body>
+		<header th:replace="commons :: commonHeader"></header>
+        <!--- header --->
+
+        <div class="container personal">
+            <div class="row form" style="margin: 0 auto">
+                <div class="form row">
+                    <div class="form-horizontal" id="login_form">
+                        <div class="col-md-4 column" style="margin:5% 5% 5% 12%">
+                            <h3 class="form-title">个人资料</h3>
+                            <form name="alldata">
+                                <div id="alldata">
+                                    <div class="form-group">
+                                        <i class="fa fa-user fa-lg"></i>
+                                        <input class="form-control" readonly="readonly" type="text" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="设置用户名，长度8-16位数字、字母、下划线" id="username" name="username" maxlength="50" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-envelope"></i>
+                                        <input class="form-control" readonly="readonly" type="email" placeholder="设置邮箱" id="email" name="email" maxlength="50" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-birthday-cake"></i>
+                                        <input type="date" id="birthday" name="birthday" readonly="readonly" class="form-control" placeholder="出生日期:" required/>
+                                    </div>
+                                </div>
+                                <button type="button" id="modifiedData" class="btn btn-default" style="background: #3083FF;color: black;float: left">修改资料</button>
+                                <button type="submit" id="modified1" class="btn btn-default btn-success" style="color: black;float: left;display: none;">修改</button>
+                                <button type="button" id="cancel1" class="btn btn-default" style="color: black;float: right;display: none">取消</button>
+                            </form>
+                            <form name="allpassword">
+                                <div id="allpassword">
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="原始密码" id="oldPassword" name="password" maxlength="20" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="新密码" id="newPassword" name="password" maxlength="20" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="确认新密码（和上面相同的密码）" id="newagPassword" name="password" maxlength="20" required/>
+                                    </div>
+                                </div>
+                                <button type="button" id="modifiedPassword" class="btn btn-default" style="background: #3083FF;color: black;float: right">修改密码</button>
+                                <button type="submit" id="modified2" class="btn btn-default btn-success" style="color: black;float: left;display: none;">修改</button>
+                                <button type="button" id="cancel2" class="btn btn-default" style="color: black;float: right;display: none">取消</button>
+                            </form>
+                        </div>
+                        <div class="col-md-4 column" style="margin: 5%">
+                            <h3>
+                                上传视频
+                            </h3>
+                            <form role="form" enctype="multipart/form-data" id="uploadingvideo">
+                                <div class="form-group">
+                                    <label for="videoname">视频名称
+                                        <span class="help-inline" style="color: red">*</span>
+                                        <span class="help-inline" style="color: red;font-size:12px">字数不超过30个</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="videoname" maxlength="30" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">视频标签
+                                        <span class="help-inline" style="color: red">*</span>
+                                        <span class="help-inline" style="color: red;font-size:12px">标签数量不可超过5个</span>
+                                    </label>
+                                    <div class="">
+                                        <select id="speakers" class="form-control speakers" multiple="multiple" required>
+                                                <option value="动漫">动漫</option>
+                                                <option value="教育">教育</option>
+                                                <option value="娱乐">娱乐</option>
+                                                <option value="影视">影视</option>
+                                                <option value="广告">广告</option>
+                                                <option value="搞笑">搞笑</option>
+                                                <option value="音乐">音乐</option>
+                                                <option value="生活">生活</option>
+                                                <option value="运动">运动</option>
+                                                <option value="科技">科技</option>
+                                                <option value="游戏">游戏</option>
+                                        </select>     <!-- select2多选功能-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="introduce">视频介绍
+                                        <span class="help-inline" style="color: red">*</span>
+                                        <span class="help-inline" style="color: red;font-size:12px">字数不超过500个</span>
+                                    </label>
+                                    <textarea name="introduce" class="form-control" id="introduce" maxlength="500" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>文件导入<span class="help-inline" style="color: red">*<a style="cursor:pointer;" title="文件大小不超过2GB;
+                                        &#10;带有H.264视频编码和AAC音频编码的MPEG 4文件;
+                                        &#10;带有VP8视频编码和Vorbis音频编码的WebM文件;
+                                        &#10;带有Theora视频编码和Vorbis音频编码的Ogg文件。
+                                        &#10;（如没按要求的格式，将由系统工作人员审核后进行格式转换，部分格式可能转换失败而无法发布）
+                                    ">文件要求(鼠标悬停此处查看)</a></span></label>
+                                    <input type="file" id="file" required/>
+                                    <p class="help-block">
+                                        选择你要上传的视频
+                                    </p>
+                                    <button type="submit" class="btn btn-default" style="background: #5cb85c;color: black;float: right">上传</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form">
+                <div class="col-md-12 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <h3>
+                                视频管理
+                            </h3>
+                        </div>
+                        <div class="col-md-6 column">
+                            <div style="float: right;margin-right: 5%;margin-top: 4%">
+                                <form name="personalvideosearch" class="form-inline">
+                                    <button class="btn btn-warning" type="button" id="allpersonalvideo" style="display: none">查看全部记录</button>
+                                    <input class="form-control required" type="" name="searchvname" id="search-form" placeholder="请输入要搜索的视频" required/>
+                                    <button class="btn" type="submit" style="background:black;color: white">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <table class="table" style="table-layout:fixed;">
+                                <thead>
+                                <tr style="background:#5bc0de">
+                                    <th style="width: 100px">编号</th>
+                                    <th style="width: 300px">视频名称(点击名称播放视频)</th>
+                                    <th>上传时间</th>
+                                    <th style="width: 200px">视频标签</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="personalvideo">
+                                </tbody>
+                            </table>
+                            <ul class="pagination" id="personalpages">
+                                <li>
+                                    <a id="personalfirstpage" href="javascript:void(0)">首页</a>
+                                </li>
+                                <li>
+                                    <a id="personalprepage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li id="personalipage0">
+                                    <a href="javascript:void(0)">1</a>
+                                </li>
+                                <li id="personalipage1">
+                                    <a href="javascript:void(0)">2</a>
+                                </li>
+                                <li id="personalipage2">
+                                    <a href="javascript:void(0)">3</a>
+                                </li>
+                                <li id="personalipage3">
+                                    <a href="javascript:void(0)">4</a>
+                                </li>
+                                <li id="personalipage4">
+                                    <a href="javascript:void(0)">5</a>
+                                </li>
+                                <li>
+                                    <a id="personalnextpage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="personalendpage" href="javascript:void(0)">尾页</a>
+                                </li>
+                            </ul>
+                            <!--   搜索视频的内容		-->
+                            <sapn style="display: none" id="personalvname"></sapn>
+                            <!--   总页数		-->
+                            <sapn style="display: none" id="personalallpages"></sapn>
+                            <!--   当前页数		-->
+                            <sapn style="display: none" id="personalnowpage"></sapn>
+                            <!--   上一页页数		-->
+                            <sapn style="display: none" id="personalapage"></sapn>
+                            <!--   下一页页数		-->
+                            <sapn style="display: none" id="personalzpage"></sapn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form">
+                <div class="col-md-12 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <h3>
+                                喜欢的视频
+                            </h3>
+                        </div>
+                        <div class="col-md-6 column">
+                            <div style="float: right;margin-right: 5%;margin-top: 4%">
+                                <form name="likevideosearch" class="form-inline">
+                                    <button class="btn btn-warning" type="button" id="alllikevideo" style="display: none">查看全部记录</button>
+                                    <input class="form-control required" type="" name="searchlikevname" id="" placeholder="请输入要搜索的视频" required/>
+                                    <button class="btn" type="submit" style="background:black;color: white">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <table class="table" style="table-layout:fixed;">
+                                <thead>
+                                <tr style="background:#5bc0de">
+                                    <th style="width: 100px">编号</th>
+                                    <th style="width: 350px">视频名称</th>
+                                    <th>上传人</th>
+                                    <th style="width: 200px">视频标签</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="likesvideo">
+                                </tbody>
+                            </table>
+                            <ul class="pagination" id="likespages">
+                                <li>
+                                    <a id="likesfirstpage" href="javascript:void(0)">首页</a>
+                                </li>
+                                <li>
+                                    <a id="likesprepage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li id="likesipage0">
+                                    <a href="javascript:void(0)">1</a>
+                                </li>
+                                <li id="likesipage1">
+                                    <a href="javascript:void(0)">2</a>
+                                </li>
+                                <li id="likesipage2">
+                                    <a href="javascript:void(0)">3</a>
+                                </li>
+                                <li id="likesipage3">
+                                    <a href="javascript:void(0)">4</a>
+                                </li>
+                                <li id="likesipage4">
+                                    <a href="javascript:void(0)">5</a>
+                                </li>
+                                <li>
+                                    <a id="likesnextpage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="likesendpage" href="javascript:void(0)">尾页</a>
+                                </li>
+                            </ul>
+                            <!--   搜索视频的内容		-->
+                            <sapn style="display: none" id="likevideovname"></sapn>
+                            <!--   总页数		-->
+                            <sapn style="display: none" id="likevideoallpages"></sapn>
+                            <!--   当前页数		-->
+                            <sapn style="display: none" id="likevideonowpage"></sapn>
+                            <!--   上一页页数		-->
+                            <sapn style="display: none" id="likevideoapage"></sapn>
+                            <!--   下一页页数		-->
+                            <sapn style="display: none" id="likevideozpage"></sapn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--- footer --->
+        <footer th:replace="commons :: commonFooter"></footer>
+		<!-- JS -->
+		<script src="/owl-carousel/owl.carousel.js"></script>
+		<script>
+			$(document).ready(function() {
+				$("#owl-demo").owlCarousel({
+					autoPlay: 3000,
+					items : 5,
+					itemsDesktop : [1199,4],
+					itemsDesktopSmall : [979,4]
+				});
+
+			});
+		</script>
+	</body>
+</html>

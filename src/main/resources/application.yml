@@ -1,0 +1,59 @@
+#开启SprinG Boot的debug，运行spring boot后控制台会显示哪些自动配置类使用，哪些没有使用
+#debug: true
+
+spring:
+  messages:
+    basename: i18n.login   #国际化
+
+  thymeleaf:
+    cache: false            #关掉前端模板引擎缓存，页面已修改，无序重启服务器，只需要按crtl+f9
+
+  datasource:
+    #   数据源基本配置
+    username: root  #用户名
+    password: 201314  #密码
+    driver-class-name: com.mysql.cj.jdbc.Driver   #驱动名
+#因“CST”时区协商误解导致时间差了14或13小时 https://www.cnblogs.com/todayforever/p/11997424.html 与数据库连接时，定义时区，避免mybatis框架从mysql获取时区。在连接上加上 serverTimezone=GMT%2B8
+    url: jdbc:mysql://192.168.0.113:3306/videoweb?serverTimezone=GMT%2B8   #路径，这里用虚拟机的mysql
+    type: com.alibaba.druid.pool.DruidDataSource    #数据源
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#文件上传大小设置,springboot默认文件大小的限制是1MB,值可以使用后缀“MB”或“KB”.如果是想要不限制文件上传的大小，那么就把两个值都设置为-1
+  servlet:
+    multipart:
+      #单个数据的大小
+      max-file-size: 2048MB
+      #总数据的大小
+      max-request-size: 2048MB
+
+server:
+  tomcat:
+    max-swallow-size: -1    # 最重要的是这一行  捕获文件大小超出异常注意：https://blog.csdn.net/ifu25/article/details/90173264
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml    #或写MyMapper.xml等
+
+#分页设置
+pagehelper:
+  reasonable: true    # reasonable：启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页。
+  support-methods-arguments: true
+  params: count=countSql
+  helper-dialect: mysql   #数据库类型
+#  offset-as-page-num: true    # offsetAsPageNum:设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用.
+#  row-bounds-with-count: true     # rowBoundsWithCount:设置为true时，使用RowBounds分页会进行count查询.

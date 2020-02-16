@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liaojiexin.videoweb.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.liaojiexin.videoweb.entity.User" >
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <!-- 一对多的关系 一个用户多个喜欢的记录-->
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="likesKeys" ofType="com.liaojiexin.videoweb.entity.LikesKey">
+      <id column="uid" property="uid" jdbcType="INTEGER" />
+      <id column="vid" property="vid" jdbcType="INTEGER" />
+    </collection>
+    <!-- 一对多的关系 一个用户多个评论的记录-->
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="comments" ofType="com.liaojiexin.videoweb.entity.Comments">
+      <id column="commenttime" property="commenttime" jdbcType="TIMESTAMP" />
+      <id column="uid" property="uid" jdbcType="INTEGER" />
+      <id column="vid" property="vid" jdbcType="INTEGER" />
+      <result column="comment" property="comment" jdbcType="VARCHAR" />
+    </collection>
+    <!-- 一对多的关系 一个用户多个视频的记录-->
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="video" ofType="com.liaojiexin.videoweb.entity.Video">
+      <id column="vid" property="vid" jdbcType="INTEGER" />
+      <result column="vname" property="vname" jdbcType="VARCHAR" />
+      <result column="vtag" property="vtag" jdbcType="CHAR" />
+      <result column="date" property="date" jdbcType="TIMESTAMP" />
+      <result column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+      <result column="url" property="url" jdbcType="VARCHAR" />
+      <result column="imageurl" property="imageurl" jdbcType="VARCHAR" />
+      <result column="state" property="state" jdbcType="TINYINT" />
+      <result column="special" property="special" jdbcType="VARCHAR" />
+      <result column="countcomments" property="countcomments" jdbcType="INTEGER" />
+      <result column="countlikes" property="countlikes" jdbcType="INTEGER" />
+      <result column="countlooks" property="countlooks" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uid, username, password, email, birthday
+  </sql>
+
+<!-- resultMap要先配置，设置入参字段映射 如上的<resultMap>标签 ,如果使用resultType则不用配置-->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.liaojiexin.videoweb.entity.User" useGeneratedKeys="true" keyProperty="uid">
+    insert into user (username, password,
+      email, birthday)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liaojiexin.videoweb.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liaojiexin.videoweb.entity.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liaojiexin.videoweb.entity.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+
+  <!-- 用户登录 -->
+  <select id="userlogin" parameterType="com.liaojiexin.videoweb.entity.User" resultType="com.liaojiexin.videoweb.entity.User">
+    select <include refid="Base_Column_List" /> from user where username= #{username} And password= #{password}
+  </select>
+  <!-- 用户注册 useGeneratedKeys="true"自动生成主键，对应mysql中的主键自动递增 -->
+  <insert id="userInsert" parameterType="com.liaojiexin.videoweb.entity.User" useGeneratedKeys="true" keyProperty="uid">
+    insert into user (username, password,
+      email, birthday)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE})
+  </insert>
+  <!-- 注册时查询是否有重复的用户名 -->
+  <select id="usernameInsert" parameterType="java.lang.String" resultType="java.lang.String">
+    select username from user where username=#{username} limit 1
+  </select>
+  <!-- 注册时查询是否有重复的邮箱 -->
+  <select id="emailInsert" parameterType="java.lang.String" resultType="java.lang.String">
+    select email from user where email=#{email} limit 1
+  </select>
+  <!-- 查询用户所有信息 -->
+  <select id="selectUser" resultType="com.liaojiexin.videoweb.entity.User" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  <!-- 修改个人资料 -->
+  <update id="updateUser" parameterType="com.liaojiexin.videoweb.entity.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE}
+    where uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <!-- 修改个人资料时查询是否有重复用户名 -->
+  <select id="usernameUpdate" resultType="java.lang.Integer" parameterType="com.liaojiexin.videoweb.entity.User">
+    select count(*) from user where username=#{username} and uid!=#{uid}
+  </select>
+  <!-- 修改个人资料时查询是否有重复的邮箱 -->
+  <select id="emailUpdate" resultType="java.lang.Integer" parameterType="com.liaojiexin.videoweb.entity.User">
+    select count(*) from user where email=#{email} and uid!=#{uid}
+  </select>
+  <!-- 修改密码 -->
+  <update id="updatePassword" parameterType="com.liaojiexin.videoweb.entity.User" >
+    update user set password=#{password,jdbcType=VARCHAR} where uid=#{uid,jdbcType=INTEGER}
+  </update>
+  <!-- 修改密码时检查原密码是否正确 -->
+  <select id="selectPassword" resultType="java.lang.String">
+    select password from user where uid=#{uid,jdbcType=INTEGER}
+  </select>
+</mapper>
