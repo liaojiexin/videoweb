@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liaojiexin.videoweb.mapper.ManageMapper" >
+  <resultMap id="BaseResultMap" type="com.liaojiexin.videoweb.entity.Manage" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="mname" property="mname" jdbcType="VARCHAR" />
+    <result column="mpassword" property="mpassword" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="cellphone" property="cellphone" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, mname, mpassword, email, cellphone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manage
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from manage
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.liaojiexin.videoweb.entity.Manage" >
+    insert into manage (mid, mname, mpassword, 
+      email, cellphone)
+    values (#{mid,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, #{mpassword,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{cellphone,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liaojiexin.videoweb.entity.Manage" >
+    insert into manage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="mname != null" >
+        mname,
+      </if>
+      <if test="mpassword != null" >
+        mpassword,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="cellphone != null" >
+        cellphone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null" >
+        #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mpassword != null" >
+        #{mpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null" >
+        #{cellphone,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liaojiexin.videoweb.entity.Manage" >
+    update manage
+    <set >
+      <if test="mname != null" >
+        mname = #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mpassword != null" >
+        mpassword = #{mpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null" >
+        cellphone = #{cellphone,jdbcType=CHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liaojiexin.videoweb.entity.Manage" >
+    update manage
+    set mname = #{mname,jdbcType=VARCHAR},
+      mpassword = #{mpassword,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=CHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <select id="manageLogin" resultMap="BaseResultMap" parameterType="com.liaojiexin.videoweb.entity.Manage">
+    select * from manage where mname = #{mname,jdbcType=VARCHAR} and mpassword = #{mpassword,jdbcType=VARCHAR}
+  </select>
+</mapper>

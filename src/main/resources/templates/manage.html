@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+		<title>视频审核</title>
+
+		 <!-- Bootstrap Core CSS -->
+	    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/style.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/manage.css">
+
+        <!-- Owl Carousel Assets -->
+        <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
+        <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+
+        <!-- jQuery -->
+        <script src="/js/jquery-2.1.1.js"></script>
+
+        <!-- Core JavaScript Files -->
+        <script src="/js/bootstrap.min.js"></script>
+
+        <script src="/js/manage.js"></script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="/js/html5shiv.js"></script>
+        <script src="/js/respond.min.js"></script>
+        <![endif]-->
+	</head>
+
+    <body>
+        <div class="container personal">
+            <div class="row form" style="margin: 0 auto">
+                <div class="form row">
+                    <div class="form-horizontal" id="login_form">
+                        <div class="col-md-4 column" style="margin:5% 5% 5% 12%">
+                            <h3 class="form-title">个人资料</h3>
+                            <form name="alldata">
+                                <div id="alldata">
+                                    <div class="form-group">
+                                        <i class="fa fa-user fa-lg"></i>
+                                        <input class="form-control" readonly="readonly" type="text" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="设置用户名，长度8-16位数字、字母、下划线" id="mname" name="mname" maxlength="50" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-envelope"></i>
+                                        <input class="form-control" readonly="readonly" type="email" placeholder="设置邮箱" id="email" name="email" maxlength="50" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-phone"></i>
+                                        <input type="text" οnkeyup="this.value=this.value.replace(/[^0-9]+/,'');" id="birthday" name="birthday" readonly="readonly" class="form-control" placeholder="移动电话" required/>
+                                        <!--  οnkeyup="this.value=this.value.replace(/[^0-9]+/,'');"     -->
+                                    </div>
+                                </div>
+                                <button type="button" id="modifiedData" class="btn btn-default" style="background: #3083FF;color: black;">修改资料</button>
+                                <button type="submit" id="modified1" class="btn btn-default btn-success" style="color: black;float: left;display: none;">修改</button>
+                                <button type="button" id="cancel1" class="btn btn-default" style="color: black;float: right;display: none">取消</button>
+                            </form>
+                        </div>
+                        <div class="col-md-4 column" style="margin: 5%">
+                            <h3 class="form-title">密码修改</h3>
+                            <form name="allpassword">
+                                <div id="allpassword">
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="原始密码" id="oldPassword" readonly="readonly" name="password" maxlength="20" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="新密码" id="newPassword" readonly="readonly" name="password" maxlength="20" required/>
+                                    </div>
+                                    <div class="form-group">
+                                        <i class="fa fa-lock fa-lg"></i>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="确认新密码（和上面相同的密码）" readonly="readonly" id="newagPassword" name="password" maxlength="20" required/>
+                                    </div>
+                                </div>
+                                <button type="button" id="modifiedPassword" class="btn btn-default" style="background: #3083FF;color: black">修改密码</button>
+                                <button type="submit" id="modified2" class="btn btn-default btn-success" style="color: black;float: left;display: none;">修改</button>
+                                <button type="button" id="cancel2" class="btn btn-default" style="color: black;float: right;display: none">取消</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form">
+                <div class="col-md-12 column">
+                    <div class="row clearfix">
+                        <div class="col-md-6 column">
+                            <h3>
+                                视频审核
+                            </h3>
+                        </div>
+                        <div class="col-md-6 column">
+                            <div style="float: right;margin-right: 5%;margin-top: 4%">
+                                <form name="personalvideosearch" class="form-inline">
+                                    <button class="btn btn-warning" type="button" id="allpersonalvideo" style="display: none">查看全部记录</button>
+                                    <input class="form-control required" type="" name="searchvname" id="search-form" placeholder="请输入要搜索的视频" required/>
+                                    <button class="btn" type="submit" style="background:black;color: white">查询</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <table class="table" style="table-layout:fixed;">
+                                <thead>
+                                <tr style="background:#5bc0de">
+                                    <th style="width: 50px">编号</th>
+                                    <th style="width: 200px">视频名称(点击名称下载)</th>
+                                    <th style="width: 300px">视频介绍</th>
+                                    <th>上传人</th>
+                                    <th>上传时间</th>
+                                    <th style="width: 200px">视频标签</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="personalvideo">
+                                </tbody>
+                            </table>
+                            <ul class="pagination" id="personalpages">
+                                <li>
+                                    <a id="personalfirstpage" href="javascript:void(0)">首页</a>
+                                </li>
+                                <li>
+                                    <a id="personalprepage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li id="personalipage0">
+                                    <a href="javascript:void(0)">1</a>
+                                </li>
+                                <li id="personalipage1">
+                                    <a href="javascript:void(0)">2</a>
+                                </li>
+                                <li id="personalipage2">
+                                    <a href="javascript:void(0)">3</a>
+                                </li>
+                                <li id="personalipage3">
+                                    <a href="javascript:void(0)">4</a>
+                                </li>
+                                <li id="personalipage4">
+                                    <a href="javascript:void(0)">5</a>
+                                </li>
+                                <li>
+                                    <a id="personalnextpage" href="javascript:void(0)">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="personalendpage" href="javascript:void(0)">尾页</a>
+                                </li>
+                            </ul>
+                            <!--   搜索视频的内容		-->
+                            <sapn style="display: none" id="personalvname"></sapn>
+                            <!--   总页数		-->
+                            <sapn style="display: none" id="personalallpages"></sapn>
+                            <!--   当前页数		-->
+                            <sapn style="display: none" id="personalnowpage"></sapn>
+                            <!--   上一页页数		-->
+                            <sapn style="display: none" id="personalapage"></sapn>
+                            <!--   下一页页数		-->
+                            <sapn style="display: none" id="personalzpage"></sapn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+	</body>
+</html>

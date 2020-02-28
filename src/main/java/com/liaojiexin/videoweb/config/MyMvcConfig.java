@@ -1,6 +1,7 @@
 package com.liaojiexin.videoweb.config;
 
 import com.liaojiexin.videoweb.component.LoginHandlerInterceptor;
+import com.liaojiexin.videoweb.component.LoginManageHandlerInterceptor;
 import com.liaojiexin.videoweb.component.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {     //注册拦截器
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/personal");
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/user/relogin");
+        registry.addInterceptor(new LoginManageHandlerInterceptor()).addPathPatterns("/manage");
     }
 
     //所有的WebMvcConfigurerAdapter组件都会一起起作用
@@ -40,6 +42,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
                 registry.addViewController("/personal").setViewName("personal");    //个人主页
                 registry.addViewController("/single").setViewName("single");        //播放
                 registry.addViewController("/contact").setViewName("contact");      //联系
+                registry.addViewController("/managelogin").setViewName("managelogin");      //管理员登录
+                registry.addViewController("/manage").setViewName("manage");      //视频审核
             }
         };
         return adapter;

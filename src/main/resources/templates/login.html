@@ -103,9 +103,9 @@
                                     <input required class="form-control required" type="password" th:placeholder="#{login.password}" placeholder="密码" id="password" name="password" maxlength="20"/>
                                 </div>
                                 <div class="form-group">
-                                    <label class="checkbox" style="width: 30%;float: left;color: black;font-size: 12px">
-                                        <input type="checkbox" name="remember" value="1"/>[[#{login.remember}]]  <!-- 如果不在span标签中，可以写成[[#{login.remember}]] -->
-                                    </label>
+<!--                                    <label class="checkbox" style="width: 30%;float: left;color: black;font-size: 12px">-->
+<!--                                        <input type="checkbox" name="remember" value="1"/>[[#{login.remember}]]  &lt;!&ndash; 如果不在span标签中，可以写成[[#{login.remember}]] &ndash;&gt;-->
+<!--                                    </label>-->
                                     <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='zh_CN')}">中文</a>
                                     <span style="color: black;font-size: 13px;float: right">|</span>
                                     <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='en_US')}">English</a>

@@ -1,0 +1,43 @@
+.personal {
+    background: url("../images/bg.jpg");
+}
+
+.personal .form {
+    background: rgba(250, 250, 250, 0.6);
+    width: auto;
+    margin: 50px auto;
+}
+
+
+/*阴影*/
+.personal .fa {
+    display: inline-block;
+    top: 30px;
+    left: 6px;
+    position: relative;
+    color: #ccc;
+}
+
+.personal input[type="text"],
+.personal input[type="password"],
+.personal input[type="email"],
+.personal input[type="date"]
+{
+    padding-left: 26px;
+}
+
+.personal .pagination{
+    margin-left: 33%;
+}
+
+
+/*placeholder在date类型的input生效*/
+input[type="date"]:before{
+    content: attr(placeholder);
+    color: rgba(85,85,85,0.6);
+}
+
+#introduce{
+    resize:none;
+    height: 100px;
+}
