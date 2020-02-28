@@ -182,8 +182,8 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
         }
     }
 
-    @Override
-    public boolean uploadingVideo(HttpServletRequest request, String vname,     //上传视频
+    @Override //上传视频
+    public boolean uploadingVideo(HttpServletRequest request, String vname,
                                   String vtag, String introduce, Map<String, Object> map,
                                   MultipartFile file)
     {
@@ -222,7 +222,7 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
             video.setVname(vname);
             video.setDate(new Date());
             video.setIntroduce(introduce);
-            video.setUrl("/video/videourl/true/" +fileName);
+            video.setUrl("/video/videourl/false/" +fileName);
             videoMapper.inservideo(video);
         } catch (IOException e) {
             map.put("msguploading","上传失败,请先检查上传文件是否按照要求，若不能解决再联系管理员.");

@@ -322,4 +322,13 @@
       #{date,jdbcType=TIMESTAMP}, #{uid,jdbcType=INTEGER}, #{introduce,jdbcType=VARCHAR},
       #{url,jdbcType=VARCHAR})
   </insert>
+<!--查出未审核的视频-->
+  <select id="selectPersonalVideo1" resultType="com.liaojiexin.videoweb.entity.Video">
+    select video.* from video
+    where video.state=0
+    <if test="vname != null">
+      and video.vname like concat('%',#{vname,jdbcType=VARCHAR},'%')
+    </if>
+    order by video.date DESC
+  </select>
 </mapper>

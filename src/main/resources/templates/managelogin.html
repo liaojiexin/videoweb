@@ -67,7 +67,8 @@
                 <div class="form row">
                     <div class="form-horizontal col-md-offset-3" id="login_form">
                         <h3 class="form-title">管理员登录</h3>
-                        <p style="color: red;margin: 0" id="msgmanagelogin"></p>
+                        <!-- th:if判断成功才生成p标签 -->
+                        <p style="color: red;margin: 0" id="msgmanagelogin" th:text="${msgmanagelogin}" th:if="${not #strings.isEmpty(msgmanagelogin)}"></p>
                         <div class="col-md-9">
                             <div class="form-group">
                                 <i class="fa fa-user fa-lg"></i>

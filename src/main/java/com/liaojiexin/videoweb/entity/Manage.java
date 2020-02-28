@@ -1,6 +1,6 @@
 package com.liaojiexin.videoweb.entity;
 
-public class Manage {
+public class Manage {       //管理员
     private Integer mid;
 
     private String mname;

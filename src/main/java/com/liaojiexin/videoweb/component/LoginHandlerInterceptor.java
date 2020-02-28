@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//https://www.cnblogs.com/sgh1023/p/10056859.html
 public class LoginHandlerInterceptor implements HandlerInterceptor {        //登录拦截器,登录检查，只用登录的用户才能访问个人页面按
                                                                             //要到MyMvcConfig内注册拦截器
     //preHandle：目标执行之前

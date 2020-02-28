@@ -90,7 +90,43 @@
       cellphone = #{cellphone,jdbcType=CHAR}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
+<!-- 管理员登录 -->
   <select id="manageLogin" resultMap="BaseResultMap" parameterType="com.liaojiexin.videoweb.entity.Manage">
     select * from manage where mname = #{mname,jdbcType=VARCHAR} and mpassword = #{mpassword,jdbcType=VARCHAR}
   </select>
+<!-- 审核模块查询管理员个人资料 -->
+  <select id="selectManager" resultType="com.liaojiexin.videoweb.entity.Manage" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from manage
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+<!--  修改管理员资料时查看是否有重复的用户名 -->
+  <select id="mnameUpdate" resultType="java.lang.Integer" parameterType="com.liaojiexin.videoweb.entity.Manage">
+    select count(*) from manage where mname=#{mname} and mid!=#{mid}
+  </select>
+<!-- 修改管理员资料时查看是否有重复的电话号码 -->
+  <select id="cellphoneUpdate" resultType="java.lang.Integer" parameterType="com.liaojiexin.videoweb.entity.Manage">
+    select count(*) from manage where cellphone=#{cellphone} and mid!=#{mid}
+  </select>
+  <!-- 修改管理员资料时查看是否有重复的邮箱 -->
+  <select id="emailUpdate" resultType="java.lang.Integer" parameterType="com.liaojiexin.videoweb.entity.Manage">
+    select count(*) from manage where email=#{email} and mid!=#{mid}
+  </select>
+  <!-- 修改个人资料 -->
+  <update id="updateManager" parameterType="com.liaojiexin.videoweb.entity.Manage">
+    update manage
+    set mname = #{mname,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=CHAR}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <!-- 修改密码时检查原密码是否正确 -->
+  <select id="selectPassword" resultType="java.lang.String">
+    select mpassword from manage where mid=#{mid,jdbcType=INTEGER}
+  </select>
+  <!-- 修改密码 -->
+  <update id="updatePassword" parameterType="com.liaojiexin.videoweb.entity.Manage" >
+    update manage set mpassword=#{mpassword,jdbcType=VARCHAR} where mid=#{mid,jdbcType=INTEGER}
+  </update>
 </mapper>

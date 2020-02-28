@@ -57,4 +57,6 @@ public interface VideoMapper {
     List selectLikeVideo(@Param("uid") Integer uid,@Param("vname") String vname);
     //上传视频
     int inservideo(Video video);
+    //查出未审核的视频
+    List selectPersonalVideo1(@Param("vname") String vname);
 }

@@ -49,7 +49,8 @@
                                 <div id="alldata">
                                     <div class="form-group">
                                         <i class="fa fa-user fa-lg"></i>
-                                        <input class="form-control" readonly="readonly" type="text" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="设置用户名，长度8-16位数字、字母、下划线" id="mname" name="mname" maxlength="50" required/>
+                                        <input class="form-control" readonly="readonly" type="text" minlength="8" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="设置用户名，长度8-16位数字、字母、下划线"
+                                               id="mname" name="mname"  maxlength="16" required/>
                                     </div>
                                     <div class="form-group">
                                         <i class="fa fa-envelope"></i>
@@ -57,8 +58,8 @@
                                     </div>
                                     <div class="form-group">
                                         <i class="fa fa-phone"></i>
-                                        <input type="text" οnkeyup="this.value=this.value.replace(/[^0-9]+/,'');" id="birthday" name="birthday" readonly="readonly" class="form-control" placeholder="移动电话" required/>
-                                        <!--  οnkeyup="this.value=this.value.replace(/[^0-9]+/,'');"     -->
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[^0-9]+/,'');" id="cellphone" name="cellphone" readonly="readonly" class="form-control" maxlength="11" minlength="11" placeholder="移动电话(11位非负整数)" required/>
+                                        <!--  onkeyup="this.value=this.value.replace(/[^0-9]+/,'');"    设置电话格式 -->
                                     </div>
                                 </div>
                                 <button type="button" id="modifiedData" class="btn btn-default" style="background: #3083FF;color: black;">修改资料</button>
@@ -72,15 +73,15 @@
                                 <div id="allpassword">
                                     <div class="form-group">
                                         <i class="fa fa-lock fa-lg"></i>
-                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="原始密码" id="oldPassword" readonly="readonly" name="password" maxlength="20" required/>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="原始密码" id="oldPassword" readonly="readonly" name="password" minlength="8" maxlength="16" required/>
                                     </div>
                                     <div class="form-group">
                                         <i class="fa fa-lock fa-lg"></i>
-                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="新密码" id="newPassword" readonly="readonly" name="password" maxlength="20" required/>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="新密码，长度8-16位数字、字母、下划线" id="newPassword" readonly="readonly" name="password" minlength="8" maxlength="16" required/>
                                     </div>
                                     <div class="form-group">
                                         <i class="fa fa-lock fa-lg"></i>
-                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="确认新密码（和上面相同的密码）" readonly="readonly" id="newagPassword" name="password" maxlength="20" required/>
+                                        <input class="form-control" type="password" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');" placeholder="确认新密码（和上面相同的密码）" readonly="readonly" id="newagPassword" name="password" minlength="8" maxlength="16" required/>
                                     </div>
                                 </div>
                                 <button type="button" id="modifiedPassword" class="btn btn-default" style="background: #3083FF;color: black">修改密码</button>
@@ -102,7 +103,7 @@
                         <div class="col-md-6 column">
                             <div style="float: right;margin-right: 5%;margin-top: 4%">
                                 <form name="personalvideosearch" class="form-inline">
-                                    <button class="btn btn-warning" type="button" id="allpersonalvideo" style="display: none">查看全部记录</button>
+                                    <button class="btn btn-warning" type="button" id="allpersonalvideo" style="display: none">查看全部</button>
                                     <input class="form-control required" type="" name="searchvname" id="search-form" placeholder="请输入要搜索的视频" required/>
                                     <button class="btn" type="submit" style="background:black;color: white">查询</button>
                                 </form>
