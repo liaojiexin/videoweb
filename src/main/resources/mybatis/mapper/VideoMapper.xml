@@ -323,9 +323,9 @@
       #{url,jdbcType=VARCHAR})
   </insert>
 <!--查出未审核的视频-->
-  <select id="selectPersonalVideo1" resultType="com.liaojiexin.videoweb.entity.Video">
-    select video.* from video
-    where video.state=0
+  <select id="selectPersonalVideo1" resultMap="BaseResultMap">
+    select video.*,username from video,user
+    where video.state=0 and video.uid=user.uid
     <if test="vname != null">
       and video.vname like concat('%',#{vname,jdbcType=VARCHAR},'%')
     </if>

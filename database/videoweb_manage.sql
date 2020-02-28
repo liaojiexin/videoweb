@@ -16,27 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contact`
+-- Table structure for table `manage`
 --
 
-DROP TABLE IF EXISTS `contact`;
+DROP TABLE IF EXISTS `manage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contact` (
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` varchar(2000) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `manage` (
+  `mid` int(11) NOT NULL AUTO_INCREMENT,
+  `mname` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mpassword` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cellphone` char(11) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`mid`),
+  UNIQUE KEY `mid_UNIQUE` (`mid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contact`
+-- Dumping data for table `manage`
 --
 
-LOCK TABLES `contact` WRITE;
-/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES ('jiexin liao','12345678@qq.com','sssss'),('jiexin liao','570839281@qq.com','oooo');
-/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+LOCK TABLES `manage` WRITE;
+/*!40000 ALTER TABLE `manage` DISABLE KEYS */;
+INSERT INTO `manage` VALUES (1,'root','123456','123456@qq.com','13726200209'),(2,'admin','123456','admin@qq.com','18824146878');
+/*!40000 ALTER TABLE `manage` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

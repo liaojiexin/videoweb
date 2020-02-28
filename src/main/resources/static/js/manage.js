@@ -193,9 +193,13 @@ function selectPersonalVideo(pageNum,vname) {
             if(data.code==0){
                 var videohtml;
                 $.each(data.data.list,function(i,val) {  //两个参数，第一个参数表示遍历的数组的下标(0开始)，第二个参数表示下标对应的值
-                    videohtml=videohtml+"<tr style='background:#ffffff'>  <td>"+val.vid+"</td>" +val.vname+
-                        "<td>"+val.introduce+"</td>  <td>"+val.user.username+"</td>  <td>"+val.date+"</td> " +"</td>  <td>"+val.state
-                        +"<td><button onclick='removeVideo("+val.vid+")' type='button' class='btn btn-danger'>删除</button></td></tr>";
+                    videohtml=videohtml+"<tr style='background:#ffffff'>  <td>"+val.vid+"</td> <td> <a href=''>" +val.vname+
+                        "</a></td> <td><textarea class='form-control' style='font-size: 12px;resize: none;height: 60px' readonly='readonly'>"
+                        +val.introduce+"</textarea></td>  <td>"+val.user.username+"</td>  <td>"+val.date+"</td>  <td>"+val.vtag+
+                        "</td> <td><select name='select'><option value='0'>请选择处理选项</option><option value='1'>通过</option>"+
+                        "<option value='2'>通过并上传</option><option value='-1'>不通过：视频涉及非法内容</option>"+
+                        "<option value='-2'>不通过：文件格式不规范</option></select>"+
+                        "<button onclick='manageVideo("+val.vid+")' type='button' class='btn btn-danger'>操作</button></td></tr>";
                 })
                 $("#personalvideo").html(videohtml);
 
@@ -261,8 +265,8 @@ function selectPersonalVideo(pageNum,vname) {
         }
     })
 }
-//视频管理删除视频
-function removeVideo(vid){
+//视频审核操作
+function manageVideo(vid){
     if (confirm("确定删除你上传的视频吗?")) {
         $.ajax({
             url:"/user/deletepersonalvideo",
@@ -282,14 +286,14 @@ function removeVideo(vid){
         })
     }
 }
-//视频管理 显示全部视频
+//视频审核 显示全部视频
 $(document).ready(function() {
     $('#allpersonalvideo').click(function(){
         selectPersonalVideo(1,"");
         $('#allpersonalvideo').css('display','none');
     });
 });
-//视频管理搜索视频
+//视频审核搜索视频
 $(document).ready(function() {
     $("form[name='personalvideosearch']").bind("submit",
         function(){
