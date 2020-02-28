@@ -5,4 +5,4 @@
 
 涉及的技术：后端主要是Spring Boot+Mybatis；前端主要是HTML+CSS+JavaScript+jQuery+Ajax+Bootstrap；前端模板引擎为thymeleaf（用的比较少，主要还是
 后端返回json数据，前端ajax进行数据展示处理）；另外还用到centos操作系统，dockert进行虚拟机环境的搭建，nginx进行反向代理和负载均衡。
-
+database文件为MySQL导出的文件。
