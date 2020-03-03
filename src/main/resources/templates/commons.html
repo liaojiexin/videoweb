@@ -10,30 +10,30 @@
     <title>公共模块</title>
 	
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  type="text/css">
 	
 	<!-- Custom CSS -->
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	
 	<!-- Owl Carousel Assets -->
-    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.carousel.css}" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.theme.css}" rel="stylesheet">
 	
 	<!-- Custom Fonts -->
-    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.4.0/css/font-awesome.min.css}"  type="text/css">
 	
 	<!-- jQuery -->
-	<script src="/js/jquery-2.1.1.js"></script>
+	<script th:src="@{/js/jquery-2.1.1.js}"></script>
 	
 	<!-- Core JavaScript Files -->  	 
-    <script src="/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<script src="/js/commons.js"></script>
+	<script th:src="@{/js/commons.js}"></script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="/js/html5shiv.js"></script>
-        <script src="/js/respond.min.js"></script>
+        <script th:src="@{/js/html5shiv.js}"></script>
+        <script th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -47,11 +47,11 @@
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<div style="float: left;width:12%;margin-right: 2%;">
-					<img src="/images/logo.PNG" style="padding-left:30%;"/>
+					<img th:src="@{/images/logo.PNG}" style="padding-left:30%;"/>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a th:href="@{/}"><i class="fa fa-home"></i> 首页</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-play-circle-o"></i> 专题</a>
+					<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-play-circle-o"></i> 专题</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -64,7 +64,7 @@
 							</div> 
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> 分类</a>
+					<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> 分类</a>
 						<div class="dropdown-menu" style="margin-left: -203.625px;">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -87,7 +87,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 账户</a>
+					<li class="dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 账户</a>
 						<div class="dropdown-menu">
 							<div class="dropdown-inner">
 								<ul class="list-unstyled">
@@ -117,7 +117,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -129,7 +129,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -141,7 +141,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -153,7 +153,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -165,7 +165,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -177,7 +177,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -189,7 +189,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -201,7 +201,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -213,7 +213,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -225,7 +225,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -237,7 +237,7 @@
 				<div class="zoom-container">
 					<div class="zoom-caption">
 						<span>视频标签</span>
-						<a href="single.html">
+						<a href="">
 							<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 						</a>
 						<p style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -272,7 +272,7 @@
 	<!-- Footer -->
 	
 	<!-- JS -->
-	<script src="/owl-carousel/owl.carousel.js"></script>
+	<script th:src="@{/owl-carousel/owl.carousel.js}"></script>
     <script>
     $(document).ready(function() {
       $("#owl-demo").owlCarousel({

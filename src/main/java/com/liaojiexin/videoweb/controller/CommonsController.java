@@ -166,7 +166,7 @@ public class CommonsController {        //公共模块的控制层
     }
 
     @ResponseBody   //返回json值
-    @GetMapping(value = "/rollvideo/{vtag}")      //滚动视频控制层
+    @GetMapping(value = "/rollvideo/{vtag}"/*,produces="application/json;charset=UTF-8"*/)      //滚动视频控制层
     public RespEntity rollVideo(@PathVariable("vtag") String vtag)
     {
         Video rollvideo=commonsService.rollVideo(vtag);

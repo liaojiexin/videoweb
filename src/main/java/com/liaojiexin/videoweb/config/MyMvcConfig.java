@@ -5,10 +5,16 @@ import com.liaojiexin.videoweb.component.LoginManageHandlerInterceptor;
 import com.liaojiexin.videoweb.component.MyLocaleResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.nio.charset.Charset;
+import java.util.List;
 
 @Configuration  //指明当前类是一个配置类；就是来替代之前的Spring配置文件
 public class MyMvcConfig implements WebMvcConfigurer {
@@ -52,4 +58,22 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver(){   //配置自己的区域解析器
         return new MyLocaleResolver();
     }
+
+    /**
+     * 中文乱码解决
+     */
+//    @Bean
+//    public HttpMessageConverter<String> responseBodyConverter() {
+//        StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+//        return converter;
+//    }
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        WebMvcConfigurer.super.configureMessageConverters(converters);
+//        converters.add(responseBodyConverter());
+//    }
+//    @Override
+//    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//        configurer.favorPathExtension(false);
+//    }
 }

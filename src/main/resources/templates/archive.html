@@ -10,32 +10,32 @@
     <title>浏览页</title>
 	
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  type="text/css">
 	
 	<!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 	
 	<!-- Owl Carousel Assets -->
-    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.carousel.css}" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.theme.css}" rel="stylesheet">
 	
 	<!-- Custom Fonts -->
-    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.4.0/css/font-awesome.min.css}"  type="text/css">
 	
 	<!-- jQuery and Modernizr-->
-	<script src="/js/jquery-2.1.1.js"></script>
+	<script th:src="@{/js/jquery-2.1.1.js}"></script>
 	
 	<!-- Core JavaScript Files -->  	 
-    <script src="/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<script src="/js/archive.js"></script>
-	<script src="/js/commons.js"></script>
+	<script th:src="@{/js/archive.js}"></script>
+	<script th:src="@{/js/commons.js}"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="/js/html5shiv.js"></script>
-        <script src="/js/respond.min.js"></script>
+        <script th:src="@{/js/html5shiv.js}"></script>
+        <script th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -116,7 +116,7 @@
 	<footer th:replace="commons :: commonFooter"></footer>
 
 	<!-- JS -->
-	<script src="/owl-carousel/owl.carousel.js"></script>
+	<script th:src="@{/owl-carousel/owl.carousel.js}"></script>
     <script>
     $(document).ready(function() {
       $("#owl-demo").owlCarousel({

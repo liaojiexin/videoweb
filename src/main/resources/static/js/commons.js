@@ -17,7 +17,8 @@ function rollvideo(vtag,i){
                     $(rollid+" a").attr("href",'/single/'+data.data.vid);   //路径
                     $(rollid+" p").text(data.data.vname);  //视频名
                     $(rollid+" img").attr("src",data.data.imageurl);      //封面
-                }else{
+                }
+                else{
                     $(rollid).remove();    //删除
                 }
             }

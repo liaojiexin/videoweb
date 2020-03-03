@@ -10,32 +10,32 @@
     <title>首页</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"  type="text/css">
 	
 	<!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 	
 	<!-- Owl Carousel Assets -->
-    <link href="/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.carousel.css}" rel="stylesheet">
+    <link th:href="@{/owl-carousel/owl.theme.css}" rel="stylesheet">
 	
 	<!-- Custom Fonts -->
-    <link rel="stylesheet" href="/font-awesome-4.4.0/css/font-awesome.min.css"  type="text/css">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.4.0/css/font-awesome.min.css}"  type="text/css">
 	
 	<!-- jQuery -->
-	<script src="/js/jquery-2.1.1.js"></script>
+	<script th:src="@{/js/jquery-2.1.1.js}"></script>
 	
 	<!-- Core JavaScript Files -->  	 
-    <script src="/js/bootstrap.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 
-	<script src="/js/index.js"></script>
-    <script src="/js/commons.js"></script>
+	<script th:src="@{/js/index.js}"></script>
+    <script th:src="@{/js/commons.js}"></script>
 	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="/js/html5shiv.js"></script>
-        <script src="/js/respond.min.js"></script>
+        <script th:src="@{/js/html5shiv.js}"></script>
+        <script th:src="@{/js/respond.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -68,7 +68,7 @@
                                 <span class="vid" style="display: none">10</span><!-- 要播放的视频id，给js调用 -->
 								<div class="zoom-caption">
 									<span class="sifttag">视频标签</span>
-									<a class="sifturl" href="single.html">
+									<a class="sifturl" href="">
 										<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 									</a>
 									<p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -79,7 +79,7 @@
                                 <span class="vid" style="display: none">12</span><!-- 要播放的视频id，给js调用 -->
                                 <div class="zoom-caption">
                                     <span class="sifttag">视频标签</span>
-                                    <a class="sifturl" href="single.html">
+                                    <a class="sifturl" href="">
                                         <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                     </a>
                                     <p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -92,7 +92,7 @@
                                 <span class="vid" style="display: none">11</span><!-- 要播放的视频id，给js调用 -->
                                 <div class="zoom-caption">
                                     <span class="sifttag">视频标签</span>
-                                    <a class="sifturl" href="single.html">
+                                    <a class="sifturl" href="">
                                         <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                     </a>
                                     <p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -103,7 +103,7 @@
                                 <span class="vid" style="display: none">13</span><!-- 要播放的视频id，给js调用 -->
                                 <div class="zoom-caption">
                                     <span class="sifttag">视频标签</span>
-                                    <a class="sifturl" href="single.html">
+                                    <a class="sifturl" href="">
                                         <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                     </a>
                                     <p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -130,14 +130,14 @@
                                             <div class="zoom-container">
                                                 <div class="zoom-caption">
                                                     <span class="sifttag">视频标签</span>
-                                                    <a class="sifturl" href="single.html">
+                                                    <a class="sifturl" href="">
                                                         <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                     </a>
                                                     <p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
                                                 </div>
                                                 <img style="height:198px;width:354px" class="siftimage" src="" />
                                             </div>
-                                            <h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="siftvname sifturl">视频名称</a></h3>
+                                            <h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="siftvname sifturl">视频名称</a></h3>
                                             <div class="info">
                                                 <h5>上传人：<a class="siftusername">Kelvin</a></h5>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -155,7 +155,7 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="sifttag">视频标签</span>
-												<a class="sifturl" href="single.html">
+												<a class="sifturl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -163,7 +163,7 @@
 											<img class="siftimage" style="height: 78px;width:140px" src="" />
 										</div>
 										<div class="wrapper">
-											<h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+											<h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
 											<div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -176,7 +176,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="sifttag">视频标签</span>
-                                                <a class="sifturl" href="single.html">
+                                                <a class="sifturl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -184,7 +184,7 @@
                                             <img class="siftimage" style="height: 78px;width:140px" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -197,7 +197,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="sifttag">视频标签</span>
-                                                <a class="sifturl" href="single.html">
+                                                <a class="sifturl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -205,7 +205,7 @@
                                             <img class="siftimage" style="height: 78px;width:140px" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -221,14 +221,14 @@
                                             <div class="zoom-container">
                                                 <div class="zoom-caption">
                                                     <span class="sifttag">视频标签</span>
-                                                    <a class="sifturl" href="single.html">
+                                                    <a class="sifturl" href="">
                                                         <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                     </a>
                                                     <p class="siftvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
                                                 </div>
                                                 <img style="height:198px;width:354px" class="siftimage" src="" />
                                             </div>
-                                            <h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="siftvname sifturl">视频名称</a></h3>
+                                            <h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="siftvname sifturl">视频名称</a></h3>
                                             <div class="info">
                                                 <h5>上传人：<a class="siftusername">Kelvin</a></h5>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -246,7 +246,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="sifttag">视频标签</span>
-                                                <a class="sifturl" href="single.html">
+                                                <a class="sifturl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -254,7 +254,7 @@
                                             <img class="siftimage" style="height: 78px;width:140px" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -267,7 +267,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="sifttag">视频标签</span>
-                                                <a class="sifturl" href="single.html">
+                                                <a class="sifturl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -275,7 +275,7 @@
                                             <img class="siftimage" style="height: 78px;width:140px" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -288,7 +288,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="sifttag">视频标签</span>
-                                                <a class="sifturl" href="single.html">
+                                                <a class="sifturl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="siftvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -296,7 +296,7 @@
                                             <img class="siftimage" style="height: 78px;width:140px" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="siftvname sifturl" style="width:190px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="siftusername">Kelvin</a></h6>
                                                 <span class="siftdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -320,14 +320,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="looktag">视频标签</span>
-												<a class="lookurl" href="single.html">
+												<a class="lookurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="lookvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img style="height:198px;width:354px" class="lookimage" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="lookvname lookurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="lookvname lookurl">视频名称</a></h3>
 										<div class="info">
                                             <h5>上传人：<a class="lookusername">Kelvin</a></h5>
                                             <span class="lookdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -344,7 +344,7 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="looktag" >视频标签</span>
-												<a class="lookurl" href="single.html">
+												<a class="lookurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="lookvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -352,7 +352,7 @@
 											<img  style="height:78.35px;width:140px" class="lookimage" src="" />
 										</div>
 										<div class="wrapper">
-											<h5 class="vid-name"><a href="#" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+											<h5 class="vid-name"><a href="" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
 											<div class="info">
                                                 <h6>上传人：<a class="lookusername">Kelvin</a></h6>
                                                 <span class="lookdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -364,7 +364,7 @@
                                         <div class="zoom-container">
                                             <div class="zoom-caption">
                                                 <span class="looktag" >视频标签</span>
-                                                <a class="lookurl" href="single.html">
+                                                <a class="lookurl" href="">
                                                     <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                                 </a>
                                                 <p class="lookvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -372,7 +372,7 @@
                                             <img  style="height:78.35px;width:140px" class="lookimage" src="" />
                                         </div>
                                         <div class="wrapper">
-                                            <h5 class="vid-name"><a href="#" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                            <h5 class="vid-name"><a href="" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                             <div class="info">
                                                 <h6>上传人：<a class="lookusername">Kelvin</a></h6>
                                                 <span class="lookdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -384,7 +384,7 @@
                                     <div class="zoom-container">
                                         <div class="zoom-caption">
                                             <span class="looktag" >视频标签</span>
-                                            <a class="lookurl" href="single.html">
+                                            <a class="lookurl" href="">
                                                 <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                             </a>
                                             <p class="lookvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -392,7 +392,7 @@
                                         <img  style="height:78.35px;width:140px" class="lookimage" src="" />
                                     </div>
                                     <div class="wrapper">
-                                        <h5 class="vid-name"><a href="#" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                        <h5 class="vid-name"><a href="" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                         <div class="info">
                                             <h6>上传人：<a class="lookusername">Kelvin</a></h6>
                                             <span class="lookdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -404,7 +404,7 @@
                                     <div class="zoom-container">
                                         <div class="zoom-caption">
                                             <span class="looktag" >视频标签</span>
-                                            <a class="lookurl" href="single.html">
+                                            <a class="lookurl" href="">
                                                 <i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
                                             </a>
                                             <p class="lookvname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -412,7 +412,7 @@
                                         <img  style="height:78.35px;width:140px" class="lookimage" src="" />
                                     </div>
                                     <div class="wrapper">
-                                        <h5 class="vid-name"><a href="#" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+                                        <h5 class="vid-name"><a href="" class="lookvname lookurl" style="width:155px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
                                         <div class="info">
                                             <h6>上传人：<a class="lookusername">Kelvin</a></h6>
                                             <span class="lookdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -436,14 +436,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -456,14 +456,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -478,14 +478,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -498,14 +498,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -520,14 +520,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -540,14 +540,14 @@
 										<div class="zoom-container">
 											<div class="zoom-caption">
 												<span class="randtag">视频标签</span>
-												<a class="randurl" href="single.html">
+												<a class="randurl" href="">
 													<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 												</a>
 												<p class="randvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 											</div>
 											<img class="randimage" style="height:126.48px;width:226px" src="" />
 										</div>
-										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="randvname randurl">视频名称</a></h3>
+										<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="randvname randurl">视频名称</a></h3>
 										<div class="info">
 											<h5>上传人： <a class="randusername">Kelvin</a></h5>
 											<span class="randdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -566,7 +566,7 @@
 					<div class="widget wid-follow">
 						<div class="heading"><h4><i class="fa fa-users"></i>欢迎来到V视频</h4></div>
 						<div class="content">
-							<img src="/images/banner.jpg" />
+							<img th:src="@{/images/banner.jpg}" />
 						</div>
 						<div class="line"></div>
 					</div>
@@ -578,7 +578,7 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="likevtag" style="font-size:7px">视频标签</span>
-										<a class="likeurl" href="single.html">
+										<a class="likeurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="likevname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -586,7 +586,7 @@
 									<img class="likeimage" style="height: 78px;width:140px" src="" />
 								</div>
 								<div class="wrapper">
-									<h5 class="vid-name"><a href="#" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+									<h5 class="vid-name"><a href="" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
 									<div class="info">
 										<h6>上传人：<a class="likeusername">Kelvin</a></h6>
 										<span class="likedate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -598,7 +598,7 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="likevtag" style="font-size:7px">视频标签</span>
-										<a class="likeurl" href="single.html">
+										<a class="likeurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="likevname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -606,7 +606,7 @@
 									<img class="likeimage" style="height: 78px;width:140px" src="" />
 								</div>
 								<div class="wrapper">
-									<h5 class="vid-name"><a href="#" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+									<h5 class="vid-name"><a href="" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
 									<div class="info">
 										<h6>上传人：<a class="likeusername">Kelvin</a></h6>
 										<span class="likedate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -618,7 +618,7 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="likevtag" style="font-size:7px">视频标签</span>
-										<a class="likeurl" href="single.html">
+										<a class="likeurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="likevname" style="font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
@@ -626,7 +626,7 @@
 									<img class="likeimage" style="height: 78px;width:140px" src="" />
 								</div>
 								<div class="wrapper">
-									<h5 class="vid-name"><a href="#" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
+									<h5 class="vid-name"><a href="" class="likevname likeurl" style="width:170px;display: -webkit-box; word-break:break-all;-webkit-box-orient: vertical;-webkit-line-clamp: 1;text-overflow:ellipsis;overflow: hidden;">视频名称</a></h5>
 									<div class="info">
 										<h6>上传人：<a class="likeusername">Kelvin</a></h6>
 										<span class="likedate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -645,14 +645,14 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="newtag">视频标签</span>
-										<a class="newurl" href="single.html">
+										<a class="newurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="newvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 									</div>
 									<img style="height:195.33px;width:348.99px" class="newimage" src="" />
 								</div>
-								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="newvname newurl">视频名称</a></h3>
+								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="newvname newurl">视频名称</a></h3>
 								<div class="info">
 									<h5>上传人：<a class="newusername">Kelvin</a></h5>
 									<span class="newdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -664,14 +664,14 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="newtag">视频标签</span>
-										<a class="newurl" href="single.html">
+										<a class="newurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="newvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 									</div>
 									<img style="height:195.33px;width:348.99px" class="newimage" src="" />
 								</div>
-								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="newvname newurl">视频名称</a></h3>
+								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="newvname newurl">视频名称</a></h3>
 								<div class="info">
 									<h5>上传人：<a class="newusername">Kelvin</a></h5>
 									<span class="newdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -683,14 +683,14 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="newtag">视频标签</span>
-										<a class="newurl" href="single.html">
+										<a class="newurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="newvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 									</div>
 									<img style="height:195.33px;width:348.99px" class="newimage" src="" />
 								</div>
-								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="newvname newurl">视频名称</a></h3>
+								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="newvname newurl">视频名称</a></h3>
 								<div class="info">
 									<h5>上传人：<a class="newusername">Kelvin</a></h5>
 									<span class="newdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -702,14 +702,14 @@
 								<div class="zoom-container">
 									<div class="zoom-caption">
 										<span class="newtag">视频标签</span>
-										<a class="newurl" href="single.html">
+										<a class="newurl" href="">
 											<i class="fa fa-play-circle-o fa-5x" style="color: #fff"></i>
 										</a>
 										<p class="newvname" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">视频名称</p>
 									</div>
 									<img style="height:195.33px;width:348.99px" class="newimage" src="" />
 								</div>
-								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="#" class="newvname newurl">视频名称</a></h3>
+								<h3 class="vid-name" style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;"><a href="" class="newvname newurl">视频名称</a></h3>
 								<div class="info">
 									<h5>上传人：<a class="newusername">Kelvin</a></h5>
 									<span class="newdate"><i class="fa fa-calendar"></i>25/3/2015</span>
@@ -728,7 +728,7 @@
 <footer th:replace="commons :: commonFooter"></footer>
 
 	<!-- JS -->
-	<script src="/owl-carousel/owl.carousel.js"></script>
+	<script th:src="@{/owl-carousel/owl.carousel.js}"></script>
     <script>
     $(document).ready(function() {
       $("#owl-demo").owlCarousel({

@@ -19,6 +19,8 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>videoweb</name>
     <description>Demo project for Spring Boot</description>
+    <!--  部署成war形式  -->
+<!--    <packaging>war</packaging>-->
 
     <properties>
         <project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
@@ -107,6 +109,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<!--spring-boot-starter-tomcat修改为 provided方式，以避免和独立 tomcat 容器的冲突.-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>junit</groupId>

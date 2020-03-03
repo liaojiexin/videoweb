@@ -26,7 +26,7 @@
 	
 	<!-- Core JavaScript Files -->  	 
     <script th:src="@{/js/bootstrap.min.js}"></script>
-        <script src="/js/commons.js"></script>
+        <script th:src="@{/js/commons.js}"></script>
     
     	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,29 +90,22 @@
                 <form th:action="@{/user/login}" method="post">
                     <div class="form row">
                         <div class="form-horizontal col-md-offset-3" id="login_form">
-                            <h3 class="form-title" th:text="#{login.tip}">登录</h3>   <!--   th:text="#{login.tip}" 国际化，i18n包下配置  -->
+                            <h3 class="form-title">登录</h3>   <!--   th:text="#{login.tip}" 国际化，i18n包下配置  -->
                             <!-- th:if判断成功才生成p标签 -->
                             <p style="color: red;margin: 0" th:text="${msglogin}" th:if="${not #strings.isEmpty(msglogin)}"></p>
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <i class="fa fa-user fa-lg"></i>
-                                    <input required class="form-control required" type="text" th:placeholder="#{login.username}" placeholder="用户名" id="username" name="username" autofocus="autofocus" maxlength="20"/>
+                                    <input required class="form-control required" type="text" placeholder="用户名" id="username" name="username" autofocus="autofocus" maxlength="20"/>
                                 </div>
                                 <div class="form-group">
                                     <i class="fa fa-lock fa-lg"></i>
-                                    <input required class="form-control required" type="password" th:placeholder="#{login.password}" placeholder="密码" id="password" name="password" maxlength="20"/>
+                                    <input required class="form-control required" type="password" placeholder="密码" id="password" name="password" maxlength="20"/>
                                 </div>
-                                <div class="form-group">
-<!--                                    <label class="checkbox" style="width: 30%;float: left;color: black;font-size: 12px">-->
-<!--                                        <input type="checkbox" name="remember" value="1"/>[[#{login.remember}]]  &lt;!&ndash; 如果不在span标签中，可以写成[[#{login.remember}]] &ndash;&gt;-->
-<!--                                    </label>-->
-                                    <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='zh_CN')}">中文</a>
-                                    <span style="color: black;font-size: 13px;float: right">|</span>
-                                    <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='en_US')}">English</a>
-                                </div>
+                                <br>
                                 <div class="form-group col-md-offset-9">
-                                    <button type="button" class="btn btn-defalut pull-right" name="register"  th:text="#{login.register}" onclick="javascrtpt:window.location.href='../register'">注册</button>
-                                    <button type="submit" class="btn btn-success pull-left" name="submit" th:text="#{login.sign}">登录</button>
+                                    <button type="button" class="btn btn-defalut pull-right" name="register" onclick="javascrtpt:window.location.href='../register'">注册</button>
+                                    <button type="submit" class="btn btn-success pull-left" name="submit">登录</button>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +115,7 @@
         <footer th:replace="commons :: commonFooter"></footer>
 
         <!-- JS -->
-        <script src="/owl-carousel/owl.carousel.js"></script>
+        <script th:src="@{/owl-carousel/owl.carousel.js}"></script>
         <script>
             $(document).ready(function() {
                 $("#owl-demo").owlCarousel({
@@ -136,3 +129,36 @@
         </script>
 	</body>
 </html>
+
+<!--国家化模块-->
+<!--<form th:action="@{/user/login}" method="post">-->
+<!--    <div class="form row">-->
+<!--        <div class="form-horizontal col-md-offset-3" id="login_form">-->
+<!--            <h3 class="form-title" th:text="#{login.tip}">登录</h3>   &lt;!&ndash;   th:text="#{login.tip}" 国际化，i18n包下配置  &ndash;&gt;-->
+<!--            &lt;!&ndash; th:if判断成功才生成p标签 &ndash;&gt;-->
+<!--            <p style="color: red;margin: 0" th:text="${msglogin}" th:if="${not #strings.isEmpty(msglogin)}"></p>-->
+<!--            <div class="col-md-9">-->
+<!--                <div class="form-group">-->
+<!--                    <i class="fa fa-user fa-lg"></i>-->
+<!--                    <input required class="form-control required" type="text" th:placeholder="#{login.username}" placeholder="用户名" id="username" name="username" autofocus="autofocus" maxlength="20"/>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <i class="fa fa-lock fa-lg"></i>-->
+<!--                    <input required class="form-control required" type="password" th:placeholder="#{login.password}" placeholder="密码" id="password" name="password" maxlength="20"/>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    &lt;!&ndash;                                    <label class="checkbox" style="width: 30%;float: left;color: black;font-size: 12px">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                        <input type="checkbox" name="remember" value="1"/>[[#{login.remember}]]  &lt;!&ndash; 如果不在span标签中，可以写成[[#{login.remember}]] &ndash;&gt;&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                    </label>&ndash;&gt;-->
+<!--                    <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='zh_CN')}">中文</a>-->
+<!--                    <span style="color: black;font-size: 13px;float: right">|</span>-->
+<!--                    <a class="btn btn-sm" style="color: black;font-size: 12px;float: right" th:href="@{/login(l='en_US')}">English</a>-->
+<!--                </div>-->
+<!--                <div class="form-group col-md-offset-9">-->
+<!--                    <button type="button" class="btn btn-defalut pull-right" name="register"  th:text="#{login.register}" onclick="javascrtpt:window.location.href='../register'">注册</button>-->
+<!--                    <button type="submit" class="btn btn-success pull-left" name="submit" th:text="#{login.sign}">登录</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</form>-->
