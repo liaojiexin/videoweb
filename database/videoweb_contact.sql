@@ -35,7 +35,7 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES ('jiexin liao','12345678@qq.com','sssss'),('jiexin liao','570839281@qq.com','oooo');
+INSERT INTO `contact` VALUES ('jiexin liao','12345678@qq.com','sssss'),('jiexin liao','570839281@qq.com','oooo'),('jiexin liao','aa@qq.com','aa');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-28 22:27:54
+-- Dump completed on 2020-03-04 22:41:55

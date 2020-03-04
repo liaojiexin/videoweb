@@ -193,13 +193,15 @@ function selectPersonalVideo(pageNum,vname) {
             if(data.code==0){
                 var videohtml;
                 $.each(data.data.list,function(i,val) {  //两个参数，第一个参数表示遍历的数组的下标(0开始)，第二个参数表示下标对应的值
-                    videohtml=videohtml+"<tr style='background:#ffffff'>  <td>"+val.vid+"</td> <td> <a href=''>" +val.vname+
-                        "</a></td> <td><textarea class='form-control' style='font-size: 12px;resize: none;height: 60px' readonly='readonly'>"
+                    videohtml=videohtml+"<tr style='background:#ffffff'>  <td>"+val.vid+"</td> <td> <a href='/download/"+val.vid+"'>" +val.vname+
+                        "</a></td> <td><textarea class='form-control' style='font-size: 12px;resize: none;height: 150px' readonly='readonly'>"
                         +val.introduce+"</textarea></td>  <td>"+val.user.username+"</td>  <td>"+val.date+"</td>  <td>"+val.vtag+
-                        "</td> <td><select name='select'><option value='0'>请选择处理选项</option><option value='1'>通过</option>"+
-                        "<option value='2'>通过并上传</option><option value='-1'>不通过：视频涉及非法内容</option>"+
-                        "<option value='-2'>不通过：文件格式不规范</option></select>"+
-                        "<button onclick='manageVideo("+val.vid+")' type='button' class='btn btn-danger'>操作</button></td></tr>";
+                        "</td> <td style='font-size: 12px'><div>封面：<input type='file' id='image"+i+"' style='width: 200px;float: right'></div>" +
+                        "<div><br>视频：<input type='file' id='video"+i+"' style='width: 200px;float: right'></div>"+
+                        "<button style='height: 25px;font-size: 12px' onclick='manageVideo("+val.vid+","+i+","+1+")' type='button' class='btn btn-danger'>通过并上传封面</button>"+
+                        "<button style='height: 25px;font-size: 12px' onclick='manageVideo("+val.vid+","+i+","+2+")' type='button' class='btn btn-danger'>通过并上传视频和封面</button>"+
+                        "<button style='height: 25px;font-size: 12px' onclick='manageVideo("+val.vid+","+i+","+-1+")' type='button' class='btn btn-danger'>不通过：视频涉及非法内容</button>"+
+                        "<button style='height: 25px;font-size: 12px' onclick='manageVideo("+val.vid+","+i+","+-2+")' type='button' class='btn btn-danger'>不通过：文件格式不规范</button></td></tr>";
                 })
                 $("#personalvideo").html(videohtml);
 
@@ -265,26 +267,45 @@ function selectPersonalVideo(pageNum,vname) {
         }
     })
 }
-//视频审核操作
-function manageVideo(vid){
-    if (confirm("确定删除你上传的视频吗?")) {
-        $.ajax({
-            url:"/user/deletepersonalvideo",
-            type:"DELETE",
-            dataType:"JSON",
-            data:{
-                vid:vid
-            },
-            success:function (data) {
-                if (data.code==0){
-                    alert("删除成功！");
-                    selectPersonalVideo($("#personalnowpage").text(),$("#personalvname").text());
-                }else{
-                    alert("异常，删除失败！");
+//视频审核操作  i对应那一行的数据，方便取到该行上传的数据（全部0~4共5行）
+// z对应哪个操作（1通过上传封面  2通过上传视频和封面   -1非法内容 -2文件不规范）
+function manageVideo(vid,i,z){
+    if ((z==1||z==2)&&($("#image"+i)[0].files[0]==null))
+        alert('视频封面不能为空，请选择上传的视频封面！');
+    else
+        if((z==2)&&($("#video"+i)[0].files[0]==null))
+            alert('视频内容不能为空，请选择上传的视频！');
+    else
+        if (confirm("确定对该视频进行此操作吗?")) {
+            var formdata = new FormData();      //FormData（） 文件上传https://developer.mozilla.org/zh-CN/docs/Web/API/FormData/FormData
+            formdata.append('vid',vid);
+            if (z==1||z==2)
+                formdata.append('file1',$("#image"+i)[0].files[0]); //封面
+            if(z==2)
+                formdata.append('file2',$("#video"+i)[0].files[0]); //视频
+            $.ajax({
+                url:"/auditVideo/"+z,
+                type:"PUT",
+                dataType:"JSON",
+                // contentType默认的值为：'application/x-www-form-urlencoded; charset=UTF-8，
+                // 而文件上传一个是multipart/form-data，但是请求内容不只是文件上传。所有使用contentType:false
+                contentType:false,
+                //processData参数默认的值为true，会转数据格式，上传不需要转，所有使用processData: false
+                processData:false,
+                data:formdata,
+                success:function (data) {
+                    if (data.code==0){
+                        alert('操作成功！');
+                        selectPersonalVideo($("#personalnowpage").text(),"");
+                    }else{
+                        alert(data.data);
+                    }
+                },
+                error:function () {
+                    alert('操作失败，异常！')
                 }
-            }
-        })
-    }
+            })
+        }
 }
 //视频审核 显示全部视频
 $(document).ready(function() {

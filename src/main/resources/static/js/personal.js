@@ -296,7 +296,7 @@ function selectPersonalVideo(pageNum,vname) {
 }
 //视频管理删除视频
 function removeVideo(vid){
-    if (confirm("确定删除你上传的视频吗?")) {
+    if (confirm("该操作不可恢复，确定删除你上传的视频吗?")) {
         $.ajax({
             url:"/user/deletepersonalvideo",
             type:"DELETE",
@@ -519,6 +519,7 @@ $(document).ready(function() {
                 data:formdata,
                 success:function (data) {
                     if (data.code==0){
+                        selectPersonalVideo($("#personalnowpage").text(),$("#personalvname").text());
                         alert('上传成功');
                     }
                     if (data.code==-1){

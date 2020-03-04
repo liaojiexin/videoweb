@@ -3,14 +3,21 @@ package com.liaojiexin.videoweb.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liaojiexin.videoweb.entity.Manage;
+import com.liaojiexin.videoweb.entity.Video;
 import com.liaojiexin.videoweb.mapper.ManageMapper;
 import com.liaojiexin.videoweb.mapper.VideoMapper;
 import com.liaojiexin.videoweb.service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -130,5 +137,151 @@ public class ManageServiceImpl implements ManageService {       //管理员模�
         }finally {
             PageHelper.clearPage(); //清理 ThreadLocal 存储的分页参数,保证线程安全
         }
+    }
+
+    @Override   //视频下载  https://www.jianshu.com/p/e678d7b362e1
+    public void downloadVideo(Integer vid,HttpServletRequest request, HttpServletResponse response) {
+        String url =videoMapper.downloadVideo(vid);
+        // 获取文件名  https://blog.csdn.net/he172073675/article/details/78349727/
+        String fName = url.trim();
+        String fileName = URLEncoder.encode(fName.substring(fName.lastIndexOf("/")+1)); //中文变下划线问题https://www.imooc.com/qadetail/253900
+        if (fileName != null) {
+            //设置文件路径  System.getProperty("user.dir")该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
+            File file = new File(System.getProperty("user.dir")+"/src/main/resources/static"+url);
+            if (file.exists()) {    //判断文件是不是存在
+                response.setContentType("application/force-download");// 设置强制下载不打开
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                    //return "下载成功";
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+     //   return "下载失败";
+    }
+
+    @Override   //审核视频时操作  file1封面  file2视频
+    public boolean auditVideo(Integer z, Integer vid,
+                              MultipartFile file1, MultipartFile file2,
+                              Map<String, Object> map)
+    {
+        if(z==-1||z==-2)       //不通过：视频涉及非法内容-1  不通过：文件格式不规范-2
+        {
+            String url = videoMapper.downloadVideo(vid);
+            File file = new File(System.getProperty("user.dir") + "/src/main/resources/static" + url);
+            if (file.exists()) {        //如果文件存在
+                file.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
+                videoMapper.auditVideo(z,vid,null,null);
+                return true;
+            }
+            else
+                map.put("msgauditVideo","异常，文件不存在！");
+                return false;
+        }
+        if(z==1||z==2)        //通过上传封面1  通过上传封面和视频2
+        {
+            if (file1!=null)       //通过上传封面
+            {
+                // 获取文件名，带后缀
+                String originalFilename = file1.getOriginalFilename();
+                //加个视频vid和时间戳，方便查找也尽量避免文件名称重复
+                String fileName = vid + "_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+ originalFilename;
+                // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
+                String dirPath = System.getProperty("user.dir");
+                //文件存储路径
+                String path = dirPath+"/src/main/resources/static/video/imagesurl/" +fileName;
+                //创建文件路径
+                File dest = new File(path);
+                //判断文件父目录是否存在
+                if (!dest.getParentFile().exists()) {
+                    dest.getParentFile().mkdir();
+                }
+                try {
+                    //上传文件
+                    file1.transferTo(dest); //文件写入
+                    //数据修改
+                    videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,"");
+                    if(file2!=null)     //通过上传新格式的视频
+                    {
+                        //把旧格式视频删除
+                        String urlold = videoMapper.downloadVideo(vid);
+                        File fileold = new File(System.getProperty("user.dir") + "/src/main/resources/static" + urlold);
+                        if (fileold.exists()) {        //如果文件存在
+                            fileold.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
+
+                            //上传新格式的视频
+                            //查出旧视频名称
+                            Video v=videoMapper.selectByPrimaryKey(vid);
+                            String vname=v.getVname();
+                            // 获取文件名，带后缀
+                            String originalFilename1 = file2.getOriginalFilename();
+                            // 获取文件的后缀格式
+                            String fileSuffix = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1).toLowerCase();
+                            //（加个vid和时间戳，方便查找也尽量避免文件名称重复）保存的文件名为: "+vname.xxx+"\n,xxx指的是fileSuffix获得的后缀
+                            String fileName1 = vid + "_" +new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + vname+"."+fileSuffix;
+                            // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
+                            String dirPath1 = System.getProperty("user.dir");
+                            //文件存储路径
+                            String path1 = dirPath1+"/src/main/resources/static/video/videourl/" +fileName1;
+                            //创建文件路径
+                            File dest1 = new File(path1);
+                            //判断文件是否已经存在
+                            if (dest1.exists())
+                            {
+                                map.put("msgauditVideo","上传失败,视频文件已存在.");
+                                return false;
+                            }
+                            //判断文件父目录是否存在
+                            if (!dest1.getParentFile().exists()) {
+                                dest1.getParentFile().mkdir();
+                            }
+                            try {
+                                //上传文件
+                                file2.transferTo(dest1); //文件写入
+
+                                //修改数据
+                                videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,"/video/videourl/" +fileName1);
+                            } catch (IOException e) {
+                                map.put("msgauditVideo","上传失败,请联系系统维护员！");
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                } catch (IOException e) {
+                    map.put("msgauditVideo","上传失败,请联系系统人员.");
+                    return false;
+                }
+            }
+        }
+        map.put("msgauditVideo","异常，请联系系统维护员！");
+        return false;
     }
 }

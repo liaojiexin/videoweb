@@ -55,8 +55,14 @@ public interface VideoMapper {
     int deletePersonalVideo(@Param("vid") Integer vid);
     //个人中心喜欢的视频查询
     List selectLikeVideo(@Param("uid") Integer uid,@Param("vname") String vname);
+    //上传视频时查出查出最大的vid号，加一加到视频文件名内方便查找管理
+    int maxVid();
     //上传视频
     int inservideo(Video video);
     //查出未审核的视频
     List selectPersonalVideo1(@Param("vname") String vname);
+    //下载文件获取文件路径
+    String downloadVideo(@Param("vid") Integer vid);
+    //视频审核操作视频
+    void auditVideo(@Param("z") Integer z,@Param("vid") Integer vid,@Param("imageurl") String imageurl,@Param("url") String url);
 }

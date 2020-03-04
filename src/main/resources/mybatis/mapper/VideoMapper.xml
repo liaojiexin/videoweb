@@ -314,6 +314,15 @@
     </if>
     order by video.date DESC
   </select>
+    <!--   查询自增id的下一个值,加到视频文件名内方便查找管理  -->
+    <select id="maxVid" resultType="java.lang.Integer">
+        SELECT
+	        AUTO_INCREMENT
+        FROM
+	        INFORMATION_SCHEMA. TABLES
+        WHERE
+	        TABLE_NAME = 'video'
+    </select>
   <!--  上传视频  -->
   <insert id="inservideo" parameterType="com.liaojiexin.videoweb.entity.Video">
     insert into video (vname, vtag,
@@ -331,4 +340,28 @@
     </if>
     order by video.date DESC
   </select>
+<!--  下载文件获取文件路径-->
+  <select id="downloadVideo" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select url from video where vid=#{vid}
+  </select>
+<!-- 视频审核操作 -->
+  <update id="auditVideo">
+    update video set
+    <if test="z==-1">
+      state=-1
+    </if>
+    <if test="z==-2">
+      state=-2
+    </if>
+    <if test="z==1">
+      state=1,
+      imageurl=#{imageurl}
+    </if>
+    <if test="z==2">
+      state=1,
+      imageurl=#{imageurl},
+      url=#{url}
+    </if>
+    where vid=#{vid}
+  </update>
 </mapper>

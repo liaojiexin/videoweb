@@ -161,6 +161,20 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
 
     @Override   //个人中心视频管理 删除视频
     public boolean deletePersonalVideo(Integer vid) {
+        //删除磁盘中的视频
+        Video v = videoMapper.selectByPrimaryKey(vid);
+        String url=v.getUrl();
+        File fileurl = new File(System.getProperty("user.dir") + "/src/main/resources/static" + url);
+        if (fileurl.exists()) {        //如果文件存在
+            fileurl.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
+        }
+        //删除磁盘中的图片
+        String image=v.getImageurl();
+        File fileimage = new File(System.getProperty("user.dir") + "/src/main/resources/static" + image);
+        if (fileimage.exists()) {        //如果文件存在
+            fileimage.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
+        }
+        //更新数据
         likesMapper.deletePersonalVideo(vid);
         commentsMapper.deletePersonalVideo(vid);
         videoMapper.deletePersonalVideo(vid);
@@ -192,12 +206,14 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
         String originalFilename = file.getOriginalFilename();
         // 获取文件的后缀格式
         String fileSuffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+        //上传视频时查出查出最大的vid号，加一加到视频文件名内方便查找管理
+        int vid=videoMapper.maxVid();
         //（加个时间戳，尽量避免文件名称重复）保存的文件名为: "+vname.xxx+"\n,xxx指的是fileSuffix获得的后缀
-        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + vname+"."+fileSuffix;
+        String fileName =vid+"_"+ new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + vname+"."+fileSuffix;
         // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
         String dirPath = System.getProperty("user.dir");
         //文件存储路径
-        String path = dirPath+"/src/main/resources/static/video/videourl/false/" +fileName;
+        String path = dirPath+"/src/main/resources/static/video/videourl/" +fileName;
         //创建文件路径
         File dest = new File(path);
         //判断文件是否已经存在
@@ -212,7 +228,7 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
         }
         try {
             //上传文件
-            file.transferTo(dest); //保存文件
+            file.transferTo(dest); //文件写入
 
             //数据存入数据库
             User loginUser = (User)request.getSession().getAttribute("loginUser");
@@ -222,7 +238,7 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
             video.setVname(vname);
             video.setDate(new Date());
             video.setIntroduce(introduce);
-            video.setUrl("/video/videourl/false/" +fileName);
+            video.setUrl("/video/videourl/" +fileName);
             videoMapper.inservideo(video);
         } catch (IOException e) {
             map.put("msguploading","上传失败,请先检查上传文件是否按照要求，若不能解决再联系管理员.");

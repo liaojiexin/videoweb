@@ -7,8 +7,10 @@ import com.liaojiexin.videoweb.entity.RespEntity;
 import com.liaojiexin.videoweb.service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,6 +88,27 @@ public class ManageController {
     {
         PageInfo selectpersonalvideo=manageService.selectPersonalVideo(vname,pageNum,pageSize);
         return new RespEntity(RespCode.SUCCESS,selectpersonalvideo);
+    }
+
+    @GetMapping("/download/{vid}")   //视频下载
+    public void downloadVideo(@PathVariable("vid") Integer vid,HttpServletRequest request, HttpServletResponse response)
+    {
+        manageService.downloadVideo(vid,request,response);
+    }
+
+    @PutMapping("/auditVideo/{z}")       //审核视频时操作      z:操作类型，vid：操作的视频，file1：封面，file2：视频
+    public RespEntity auditVideo(@PathVariable("z") Integer z,
+                                 @RequestParam("vid") Integer vid,
+                                 @RequestParam(value = "file1",required = false) MultipartFile file1,
+                                 @RequestParam(value="file2",required = false) MultipartFile file2)
+    {
+        Map<String,Object> map=new HashMap<>();
+        boolean auditVideo=manageService.auditVideo(z,vid,file1,file2,map);
+        String msgauditVideo=(String)map.get("msgauditVideo");
+        if (auditVideo==true)
+            return new RespEntity(RespCode.SUCCESS);
+        else
+            return new RespEntity(RespCode.ERROR,msgauditVideo);
     }
 
 }
