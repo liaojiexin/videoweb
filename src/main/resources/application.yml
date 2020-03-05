@@ -9,7 +9,7 @@ spring:
 #      enabled: true
 
   messages:
-    basename: i18n.login   #国际化
+    basename: i18n.login  #国际化
 
   thymeleaf:
     cache: false            #关掉前端模板引擎缓存，页面已修改，无序重启服务器，只需要按crtl+f9
