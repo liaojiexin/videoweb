@@ -226,8 +226,9 @@ public class ManageServiceImpl implements ManageService {       //管理员模�
                 try {
                     //上传文件
                     file1.transferTo(dest); //文件写入
+                    String url = videoMapper.downloadVideo(vid);
                     //数据修改
-                    videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,"");
+                    videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,url);
                     if(file2!=null)     //通过上传新格式的视频
                     {
                         //把旧格式视频删除
