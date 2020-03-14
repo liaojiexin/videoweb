@@ -20,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserServiceImpl implements UserService {      //处理用户相关的服务
@@ -41,9 +43,15 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
 
     @Override   //判断用户注册合法性，合法则注册
     public boolean isUserRegister(String username,String password,String repassword,String email,Date birthday, Map<String ,Object> map) {
-        if (username.length()<8||username.length()>16)       //用户名长度8-16
+        //正则表达式 验证注册是否符合数字字母下划线规定 https://www.cnblogs.com/haoyul/p/9701085.html
+        String regex = "^(\\w){8,16}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher musername = p.matcher(username);    //用户名
+        boolean isMatchusername = musername.matches();
+
+        if (!isMatchusername)       //用户名不规范
         {
-            map.put("msgregister","用户名长度不规范");
+            map.put("msgregister","用户名长度或格式不规范，8-16位的数字、字母或下划线");
             return false;
         }
         else if (password.length()<8||password.length()>16)     //密码长度8-16
@@ -92,9 +100,15 @@ public class UserServiceImpl implements UserService {      //处理用户相关�
 
     @Override       //修改个人资料
     public boolean updateUser(User user,Map<String,Object> map) {
-        if (user.getUsername().length()<8||user.getUsername().length()>16)       //用户名长度8-16
+        //正则表达式 验证注册是否符合数字字母下划线规定
+        String regex = "^(\\w){8,16}$";
+        Pattern p = Pattern.compile(regex);
+        Matcher musername = p.matcher(user.getUsername());    //用户名
+        boolean isMatchusername = musername.matches();
+
+        if (!isMatchusername)       //用户名长度8-16
         {
-            map.put("msgupdateuser","用户名长度不规范(长度8-16的数字、字母和下划线)");
+            map.put("msgupdateuser","用户名不规范(长度8-16的数字、字母和下划线)");
             return false;
         }
         else if (userMapper.usernameUpdate(user)>0)        //用户名已经存在
