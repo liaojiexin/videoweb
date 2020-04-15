@@ -237,6 +237,7 @@ function islike() {
 }
 //喜欢视频投票
 function addlike() {
+    var a=parseInt($("#spanlikes").text())+1;
     $.ajax({
         url:"/addlike",
         type:"POST",
@@ -249,6 +250,7 @@ function addlike() {
                 $("#nolike").css('display','inline');
                 $("#like").css('display','none');
                 alert('感谢你的投票！');
+                $("#spanlikes").html('<i class="fa fa-heart"></i>'+a); //实时更新页面的投票数
             }
             if (data.code==-1){
                 alert('请先登录，在投票！');
@@ -258,6 +260,7 @@ function addlike() {
 }
 //取消视频投票
 function deletelike() {
+    var a=parseInt($("#spanlikes").text())-1;
     $.ajax({
         url:"/deletelike",
         type:"DELETE",
@@ -270,6 +273,7 @@ function deletelike() {
                 $("#like").css('display','inline');
                 $("#nolike").css('display','none');
                 alert('投票已取消！');
+                $("#spanlikes").html('<i class="fa fa-heart"></i>'+a); //实时更新页面的投票数
             }
             if (data.code==-1){
                 alert('异常！！！');

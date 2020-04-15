@@ -109,7 +109,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-<!--spring-boot-starter-tomcat修改为 provided方式，以避免和独立 tomcat 容器的冲突.-->
+<!--打成war包时，spring-boot-starter-tomcat修改为 provided方式，以避免和独立 tomcat 容器的冲突.-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
@@ -120,6 +120,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+
+<!--   springboot整合jedis时 导入jedis包 这里不需要声明版本因为springboot内默认应用了jedis版本    -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
     </dependencies>
 

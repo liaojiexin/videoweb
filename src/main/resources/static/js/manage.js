@@ -273,6 +273,9 @@ function manageVideo(vid,i,z){
     if ((z==1||z==2)&&($("#image"+i)[0].files[0]==null))
         alert('视频封面不能为空，请选择上传的视频封面！');
     else
+        if((z==1)&&($("#video"+i)[0].files[0]!=null))
+        alert("无需上传视频的情况时，请勿选择视频文件！");
+    else
         if((z==2)&&($("#video"+i)[0].files[0]==null))
             alert('视频内容不能为空，请选择上传的视频！');
     else

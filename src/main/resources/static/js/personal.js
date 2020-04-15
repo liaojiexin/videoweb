@@ -393,7 +393,7 @@ function selectLikeVideo(pageNum,vname) {
                 var videohtml;
                 $.each(data.data.list,function(i,val) {  //两个参数，第一个参数表示遍历的数组的下标(0开始)，第二个参数表示下标对应的值
                     videohtml=videohtml+"<tr style='background:aliceblue'>  <td>"+val.vid+"</td><td style='word-wrap:break-word;'><a href='/single/"+val.vid+"'>"+val.vname+"</a></td>"+
-                        "<td>"+val.user.username+"</td>  <td>"+val.vtag+"</td> <td><button onclick='removeLikeVideo("+val.vid+")' type='button' class='btn btn-danger'>删除</button></td></tr>";
+                        "<td>"+val.user.username+"</td>  <td>"+val.vtag+"</td> <td><button onclick='removeLikeVideo("+val.vid+")' type='button' class='btn btn-danger'>取消</button></td></tr>";
                 })
                 $("#likesvideo").html(videohtml);
 

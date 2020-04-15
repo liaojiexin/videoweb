@@ -52,7 +52,8 @@ spring:
 server:
   tomcat:
     max-swallow-size: -1    # 最重要的是这一行  捕获文件大小超出异常注意：https://blog.csdn.net/ifu25/article/details/9017326
-#    uri-encoding=UTF-8:
+  port: 8080
+#    uri-encoding=UTF-8
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
@@ -66,3 +67,6 @@ pagehelper:
   helper-dialect: mysql   #数据库类型
 #  offset-as-page-num: true    # offsetAsPageNum:设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用.
 #  row-bounds-with-count: true     # rowBoundsWithCount:设置为true时，使用RowBounds分页会进行count查询.
+
+
+#springboot整合redis-jedis客户端

@@ -207,7 +207,7 @@ public class ManageServiceImpl implements ManageService {       //管理员模�
         }
         if(z==1||z==2)        //通过上传封面1  通过上传封面和视频2
         {
-            if (file1!=null)       //通过上传封面
+            if (z==1)       //通过上传封面
             {
                 // 获取文件名，带后缀
                 String originalFilename = file1.getOriginalFilename();
@@ -229,7 +229,7 @@ public class ManageServiceImpl implements ManageService {       //管理员模�
                     String url = videoMapper.downloadVideo(vid);
                     //数据修改
                     videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,url);
-                    if(file2!=null)     //通过上传新格式的视频
+                    if(z==2)     //通过上传新格式的视频
                     {
                         //把旧格式视频删除
                         String urlold = videoMapper.downloadVideo(vid);
