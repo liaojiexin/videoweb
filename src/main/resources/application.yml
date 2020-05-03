@@ -52,7 +52,7 @@ spring:
 server:
   tomcat:
     max-swallow-size: -1    # 最重要的是这一行  捕获文件大小超出异常注意：https://blog.csdn.net/ifu25/article/details/9017326
-  port: 8080
+  port: 8081
 #    uri-encoding=UTF-8
 
 mybatis:

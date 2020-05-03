@@ -207,79 +207,77 @@ public class ManageServiceImpl implements ManageService {       //管理员模�
         }
         if(z==1||z==2)        //通过上传封面1  通过上传封面和视频2
         {
-            if (z==1)       //通过上传封面
-            {
-                // 获取文件名，带后缀
-                String originalFilename = file1.getOriginalFilename();
-                //加个视频vid和时间戳，方便查找也尽量避免文件名称重复
-                String fileName = vid + "_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+ originalFilename;
-                // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
-                String dirPath = System.getProperty("user.dir");
-                //文件存储路径
-                String path = dirPath+"/src/main/resources/static/video/imagesurl/" +fileName;
-                //创建文件路径
-                File dest = new File(path);
-                //判断文件父目录是否存在
-                if (!dest.getParentFile().exists()) {
-                    dest.getParentFile().mkdir();
-                }
-                try {
-                    //上传文件
-                    file1.transferTo(dest); //文件写入
-                    String url = videoMapper.downloadVideo(vid);
-                    //数据修改
-                    videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,url);
-                    if(z==2)     //通过上传新格式的视频
-                    {
-                        //把旧格式视频删除
-                        String urlold = videoMapper.downloadVideo(vid);
-                        File fileold = new File(System.getProperty("user.dir") + "/src/main/resources/static" + urlold);
-                        if (fileold.exists()) {        //如果文件存在
-                            fileold.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
+            //通过上传封面
+            // 获取文件名，带后缀
+            String originalFilename = file1.getOriginalFilename();
+            //加个视频vid和时间戳，方便查找也尽量避免文件名称重复
+            String fileName = vid + "_"+new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())+"_"+ originalFilename;
+            // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
+            String dirPath = System.getProperty("user.dir");
+            //文件存储路径
+            String path = dirPath+"/src/main/resources/static/video/imagesurl/" +fileName;
+            //创建文件路径
+            File dest = new File(path);
+            //判断文件父目录是否存在
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdir();
+            }
+            try {
+                //上传文件
+                file1.transferTo(dest); //文件写入
+                String url = videoMapper.downloadVideo(vid);
+                //数据修改
+                videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,url);
+                if(z==2)     //通过上传新格式的视频
+                {
+                    //把旧格式视频删除
+                    String urlold = videoMapper.downloadVideo(vid);
+                    File fileold = new File(System.getProperty("user.dir") + "/src/main/resources/static" + urlold);
+                    if (fileold.exists()) {        //如果文件存在
+                        fileold.delete();      //文件删除  https://blog.csdn.net/weixin_43790879/article/details/103155429
 
-                            //上传新格式的视频
-                            //查出旧视频名称
-                            Video v=videoMapper.selectByPrimaryKey(vid);
-                            String vname=v.getVname();
-                            // 获取文件名，带后缀
-                            String originalFilename1 = file2.getOriginalFilename();
-                            // 获取文件的后缀格式
-                            String fileSuffix = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1).toLowerCase();
-                            //（加个vid和时间戳，方便查找也尽量避免文件名称重复）保存的文件名为: "+vname.xxx+"\n,xxx指的是fileSuffix获得的后缀
-                            String fileName1 = vid + "_" +new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + vname+"."+fileSuffix;
-                            // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
-                            String dirPath1 = System.getProperty("user.dir");
-                            //文件存储路径
-                            String path1 = dirPath1+"/src/main/resources/static/video/videourl/" +fileName1;
-                            //创建文件路径
-                            File dest1 = new File(path1);
-                            //判断文件是否已经存在
-                            if (dest1.exists())
-                            {
-                                map.put("msgauditVideo","上传失败,视频文件已存在.");
-                                return false;
-                            }
-                            //判断文件父目录是否存在
-                            if (!dest1.getParentFile().exists()) {
-                                dest1.getParentFile().mkdir();
-                            }
-                            try {
-                                //上传文件
-                                file2.transferTo(dest1); //文件写入
+                        //上传新格式的视频
+                        //查出旧视频名称
+                        Video v=videoMapper.selectByPrimaryKey(vid);
+                        String vname=v.getVname();
+                        // 获取文件名，带后缀
+                        String originalFilename1 = file2.getOriginalFilename();
+                        // 获取文件的后缀格式
+                        String fileSuffix = originalFilename1.substring(originalFilename1.lastIndexOf(".") + 1).toLowerCase();
+                        //（加个vid和时间戳，方便查找也尽量避免文件名称重复）保存的文件名为: "+vname.xxx+"\n,xxx指的是fileSuffix获得的后缀
+                        String fileName1 = vid + "_" +new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + "_" + vname+"."+fileSuffix;
+                        // 该方法返回的为当前项目的工作目录，即在哪个地方启动的java线程  当前为E:\graduation\videoweb
+                        String dirPath1 = System.getProperty("user.dir");
+                        //文件存储路径
+                        String path1 = dirPath1+"/src/main/resources/static/video/videourl/" +fileName1;
+                        //创建文件路径
+                        File dest1 = new File(path1);
+                        //判断文件是否已经存在
+                        if (dest1.exists())
+                        {
+                            map.put("msgauditVideo","上传失败,视频文件已存在.");
+                            return false;
+                        }
+                        //判断文件父目录是否存在
+                        if (!dest1.getParentFile().exists()) {
+                            dest1.getParentFile().mkdir();
+                        }
+                        try {
+                            //上传文件
+                            file2.transferTo(dest1); //文件写入
 
-                                //修改数据
-                                videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,"/video/videourl/" +fileName1);
-                            } catch (IOException e) {
-                                map.put("msgauditVideo","上传失败,请联系系统维护员！");
-                                return false;
-                            }
+                            //修改数据
+                            videoMapper.auditVideo(z,vid,"/video/imagesurl/" +fileName,"/video/videourl/" +fileName1);
+                        } catch (IOException e) {
+                            map.put("msgauditVideo","上传失败,请联系系统维护员！");
+                            return false;
                         }
                     }
-                    return true;
-                } catch (IOException e) {
-                    map.put("msgauditVideo","上传失败,请联系系统人员.");
-                    return false;
                 }
+                return true;
+            } catch (IOException e) {
+                map.put("msgauditVideo","上传失败,请联系系统人员.");
+                return false;
             }
         }
         map.put("msgauditVideo","异常，请联系系统维护员！");
