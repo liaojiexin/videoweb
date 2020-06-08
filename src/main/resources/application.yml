@@ -14,6 +14,7 @@ spring:
   thymeleaf:
 #    cache: false            #关掉前端模板引擎缓存，页面已修改，无序重启服务器，只需要按crtl+f9
 
+#配置mysql
   datasource:
     #   数据源基本配置
     username: root  #用户名
@@ -49,6 +50,12 @@ spring:
       #总数据的大小
       max-request-size: 2048MB
 
+  #配置redis
+  redis:
+    host: 192.168.0.111
+    password: 201314
+    port: 6379  #省略默认未6379
+
 server:
   tomcat:
     max-swallow-size: -1    # 最重要的是这一行  捕获文件大小超出异常注意：https://blog.csdn.net/ifu25/article/details/9017326
@@ -60,13 +67,13 @@ mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml    #或写MyMapper.xml等
 
-##显示出出mapper包下的查询的日志
-logging:
-  level:
-    com:
-      liaojiexin:
-        videoweb:
-          mapper: debug
+#显示出出mapper包下的查询的日志
+#logging:
+#  level:
+#    com:
+#      liaojiexin:
+#        videoweb:
+#          mapper: debug
 
 #分页设置
 pagehelper:
@@ -76,6 +83,3 @@ pagehelper:
   helper-dialect: mysql   #数据库类型
 #  offset-as-page-num: true    # offsetAsPageNum:设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用.
 #  row-bounds-with-count: true     # rowBoundsWithCount:设置为true时，使用RowBounds分页会进行count查询.
-
-
-#springboot整合redis-jedis客户端

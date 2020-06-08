@@ -122,13 +122,11 @@
             <scope>test</scope>
         </dependency>
 
-<!--   springboot整合jedis时 导入jedis包 这里不需要声明版本因为springboot内默认应用了jedis版本    -->
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
     </dependencies>
-
 
     <!-- 这个插件，可以将应用打包成一个可执行的jar包   -->
     <build>

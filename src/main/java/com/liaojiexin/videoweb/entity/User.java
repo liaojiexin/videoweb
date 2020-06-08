@@ -3,10 +3,11 @@ package com.liaojiexin.videoweb.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class User {         //用户
+public class User implements Serializable {         //用户
     private Integer uid;                //用户id
     private String username;            //用户名
     private String password;        //用户密码
