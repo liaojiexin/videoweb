@@ -3,9 +3,10 @@ package com.liaojiexin.videoweb.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CommentsKey {
+public class CommentsKey implements Serializable {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")  //https://www.cnblogs.com/huanggy/p/9471827.html
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date commenttime;       //评论时间

@@ -1,6 +1,8 @@
 package com.liaojiexin.videoweb.entity;
 
-public class LikesKey {     //记录喜欢视频的记录
+import java.io.Serializable;
+
+public class LikesKey implements Serializable {     //记录喜欢视频的记录
     private Integer uid;   //用户id
 
     private Integer vid;    //视频id

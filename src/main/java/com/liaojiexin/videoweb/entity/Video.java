@@ -3,10 +3,11 @@ package com.liaojiexin.videoweb.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Video {
+public class Video implements Serializable {
     private Integer vid;        //视频id
     private String vname;       //视频名
     private String vtag;        //视频标签

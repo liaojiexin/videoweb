@@ -1,5 +1,7 @@
 package com.liaojiexin.videoweb.entity;
 
+import java.io.Serializable;
+
 public class Manage {       //管理员
     private Integer mid;
 

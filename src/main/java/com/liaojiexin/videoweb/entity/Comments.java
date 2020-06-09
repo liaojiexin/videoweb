@@ -1,6 +1,8 @@
 package com.liaojiexin.videoweb.entity;
 
-public class Comments extends CommentsKey {     //视频评论
+import java.io.Serializable;
+
+public class Comments extends CommentsKey implements Serializable {     //视频评论
     private String comment;     //评论
 
     public String getComment() {

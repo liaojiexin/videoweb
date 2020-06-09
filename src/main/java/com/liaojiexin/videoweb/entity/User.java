@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class User implements Serializable {         //用户
+public class User implements Serializable{         //用户
     private Integer uid;                //用户id
     private String username;            //用户名
     private String password;        //用户密码
